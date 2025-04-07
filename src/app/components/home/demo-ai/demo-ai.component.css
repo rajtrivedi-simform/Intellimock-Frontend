@@ -1,0 +1,99 @@
+section.ai-demo {
+    background-color: #0b111e;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+section.ai-demo .title-wrapper {
+    max-width: 800px;
+    width: 100%;
+}
+
+section.ai-demo .title-wrapper h1 {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+section.ai-demo .title-wrapper .sub-title {
+    color: #9ca3af;
+    font-size: 1.2rem;
+    max-width: 600px;
+    line-height: 1.5;
+    margin: 0 auto;
+}
+
+section.ai-demo .card-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.card {
+    background: #1a1a2e;
+    border-radius: 12px;
+    padding: 20px;
+    color: #fff;
+    text-align: left;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+    section.ai-demo {
+        padding: 3rem 1.5rem;
+    }
+
+    section.ai-demo .title-wrapper h1 {
+        font-size: 2rem;
+    }
+
+    section.ai-demo .title-wrapper .sub-title {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    section.ai-demo {
+        padding: 2.5rem 1rem;
+    }
+
+    section.ai-demo .title-wrapper h1 {
+        font-size: 1.8rem;
+    }
+
+    section.ai-demo .card-wrapper {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    section.ai-demo {
+        padding: 2rem 0.5rem;
+    }
+
+    section.ai-demo .title-wrapper h1 {
+        font-size: 1.6rem;
+    }
+
+    section.ai-demo .title-wrapper .sub-title {
+        font-size: 0.95rem;
+    }
+
+    section.ai-demo .card-wrapper {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,15 @@
+<section class="features">
+    <div class="title-container">
+      <h1 class="title-wrapper">Powerful features to ace your next interview</h1>
+      <div class="tagline-wrapper">
+        IntelliMock combines cutting-edge AI technology with proven interview techniques to help you prepare effectively.
+      </div>
+    </div>
+    
+    <div class="features-grid">
+      @for (feature of features; track feature) {
+        <app-card [title]="feature.title" [description]="feature.description" [icon]="feature.icon"></app-card>
+      }
+    </div>
+  </section>
+  

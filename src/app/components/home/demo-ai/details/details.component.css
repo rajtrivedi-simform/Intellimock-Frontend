@@ -1,0 +1,163 @@
+.card {
+    background: #030712;
+    color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 150%; 
+    max-width: 400px; 
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 20px auto; 
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #a1a1a1;
+    margin-bottom: 15px;
+}
+
+.tabs {
+    display: flex;
+    background: #1a1a26;
+    border-radius: 6px;
+    padding: 4px;
+    margin-bottom: 15px;
+}
+
+.tabs button {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #a1a1a1;
+    font-size: 14px;
+    padding: 8px 0;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.tabs button.active {
+    background: #282841;
+    color: #fff;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #1f2937;
+    text-align: left;
+}
+
+.icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(109, 40, 217, 0.1);
+    color: #6d28d9;
+    border-radius: 50%;
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+.info-item h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.info-item p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: #a1a1a1;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 100%; 
+        max-width: 380px;
+        padding: 18px;
+    }
+
+    .tabs {
+        flex-direction: row;
+        padding: 5px;
+    }
+
+    .tabs button {
+        font-size: 13px; 
+        padding: 6px 0;
+    }
+
+    .info-item {
+        flex-direction: row; 
+        align-items: center;
+    }
+
+    .icon {
+        width: 32px; 
+        height: 32px;
+        font-size: 14px;
+    }
+
+    .info-item h4 {
+        font-size: 13px;
+    }
+
+    .info-item p {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%; 
+        max-width: 350px;
+        padding: 15px;
+    }
+
+    .tabs {
+        flex-direction: column; 
+        padding: 3px;
+    }
+
+    .tabs button {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+        padding: 8px 0;
+    }
+
+    .icon {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .info-item h4 {
+        font-size: 12px;
+    }
+
+    .info-item p {
+        font-size: 10px;
+    }
+}

@@ -1,0 +1,10 @@
+div.card{
+    text-align: left;
+}
+div.card>h3{
+    color: white;
+    margin-bottom: 0.7rem;
+}
+div.card>p{
+    color: #b0b0b0;
+}
