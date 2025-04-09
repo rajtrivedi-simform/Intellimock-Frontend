@@ -1,12 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  ReactiveFormsModule,
-  FormGroup,
-  FormControl,
-  Validators,
-} from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HeaderComponent } from '../../../common/header/header.component';
 import { CommonModule } from '@angular/common';
 import { merge } from 'rxjs';
@@ -26,12 +21,9 @@ export class LoginComponent implements OnInit {
   loginSignal = signal<string>('');
   emailErrorMsg = signal<string>('');
   passErrorMsg = signal<string>('');
-  passwordValidator =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
-  readonly userEmail = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  conPassErrorMsg = signal<string>('');
+  passwordValidator = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,16}$/;
+  readonly userEmail = new FormControl('', [Validators.required, Validators.email]);
   readonly userPassword = new FormControl('', [
     Validators.required,
     Validators.pattern(this.passwordValidator),
@@ -58,11 +50,16 @@ export class LoginComponent implements OnInit {
       userPassword: this.userPassword,
     });
 
-    merge(this.userEmail.valueChanges, this.userPassword.valueChanges)
+    merge(
+      this.userEmail.valueChanges,
+      this.userPassword.valueChanges,
+      this.confirmPassword.valueChanges
+    )
       .pipe(takeUntilDestroyed())
       .subscribe(() => {
         this.validatorEmail();
         this.validatorPassword();
+        this.validateConfirmPassword();
       });
   }
 
@@ -72,20 +69,22 @@ export class LoginComponent implements OnInit {
     });
     if (this.loginSignal() === 'Register') {
       this.userDataForm.addControl('confirmPassword', this.confirmPassword);
-      this.userDataForm.addControl(
-        'userFullName',
-        new FormControl('', Validators.required)
-      );
+      this.userDataForm.addControl('userFullName', new FormControl('', Validators.required));
     }
 
     //initilizing validators
     this.validatorEmail();
     this.validatorPassword();
+    this.validateConfirmPassword();
   }
 
   formHandler() {
     if (this.userDataForm.valid) {
       if (this.loginSignal() == 'Register') {
+        if (this.userPassword.value !== this.confirmPassword.value) {
+          this.toast.error('Password and Confirm Password should be same.');
+          return;
+        }
         const data: userObjRegister = {
           userFullName: this.userDataForm.get('userFullName')?.value,
           userEmail: this.userDataForm.get('userEmail')?.value,
@@ -97,30 +96,30 @@ export class LoginComponent implements OnInit {
           this.toast.error('Passwords not Matching');
         }
 
-        this.register.registerUser(data).subscribe(
-          (res) => {
+        this.register.registerUser(data).subscribe({
+          next: (res) => {
             this.toast.success('Account created successfully!');
             this.router.navigateByUrl('login');
           },
-          (err) => {
+          error: (err) => {
             this.toast.error(err.error.msg);
-          }
-        );
+          },
+        });
       } else {
         const data: userObjLogin = {
           userEmail: this.userDataForm.get('userEmail')?.value,
           userPassword: this.userDataForm.get('userPassword')?.value,
         };
-        this.userLogin.userLogin(data).subscribe(
-          (res) => {
+        this.userLogin.userLogin(data).subscribe({
+          next: (res) => {
             this.toast.success('Login');
             this.router.navigateByUrl('');
           },
-          (err) => {
+          error: (err) => {
             console.error(err);
             this.toast.error(err.error.msg);
-          }
-        );
+          },
+        });
       }
     } else {
       this.toast.error('Please fill all the fields');
@@ -140,19 +139,32 @@ export class LoginComponent implements OnInit {
   validatorPassword() {
     if (this.userPassword.hasError('required')) {
       this.passErrorMsg.set('*Password is required');
-    } else if (
-      this.userPassword.hasError('minlength') ||
-      this.userPassword.hasError('maxlength')
-    ) {
-      this.passErrorMsg.set(
-        'Password should be of 8 characters with maximum of 16'
-      );
+    } else if (this.userPassword.hasError('minlength') || this.userPassword.hasError('maxlength')) {
+      this.passErrorMsg.set('Password should be of 8 characters with maximum of 16');
     } else if (this.userPassword.hasError('pattern')) {
-      this.passErrorMsg.set(
-        'Password should be alphanumeric & special characters only'
-      );
+      this.passErrorMsg.set('Password should be alphanumeric & special characters only');
     } else {
       this.passErrorMsg.set('');
+    }
+  }
+
+  validateConfirmPassword() {
+    if (this.confirmPassword.hasError('required')) {
+      this.conPassErrorMsg.set('*Confirm Password is required');
+    } else if (
+      this.confirmPassword.hasError('minlength') ||
+      this.confirmPassword.hasError('maxlength')
+    ) {
+      this.conPassErrorMsg.set('Password should be between 8 and 16 characters.');
+    } else if (this.confirmPassword.hasError('pattern')) {
+      this.conPassErrorMsg.set(
+        'Password should include uppercase, lowercase, numbers, and special characters.'
+      );
+    } else if (this.confirmPassword.value !== this.userPassword.value) {
+      this.conPassErrorMsg.set('Password and Confirm Password should match.');
+      // this.toast.error('Password and Confirm Password should match.');
+    } else {
+      this.conPassErrorMsg.set('');
     }
   }
 }

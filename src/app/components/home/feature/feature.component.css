@@ -1,72 +1,72 @@
-section{
-    height: auto;
-    background-color: #121926;
+section {
+  height: auto;
+  background-color: #121926;
 }
 
 .features {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 4rem;
-    text-align: center;
-    padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 4rem;
+  text-align: center;
+  padding: 50px 20px;
 }
 
 .title-container {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title-wrapper {
-    font-size: 2.2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: white;
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: white;
 }
 
 .tagline-wrapper {
-    font-size: 1.2rem;
-    width: 80%;
-    text-align: center;
-    color: #b0b0b0;
+  font-size: 1.2rem;
+  width: 80%;
+  text-align: center;
+  color: #b0b0b0;
 }
 
 .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 1.5rem;
-    max-width: 1100px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 app-card {
-    display: block;
-    background: #030712;
-    padding: 3rem 1.2rem;
-    border-radius: 10px;
-    transition: transform 0.3s ease-in-out;
+  display: block;
+  background: #030712;
+  padding: 3rem 1.2rem;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
 }
 
 app-card:hover {
-    transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 @media (max-width: 768px) {
-    section{
-        height: auto;
-    }
-    .title-wrapper {
-        font-size: 1.8rem;
-    }
-    
-    .tagline-wrapper {
-        font-size: 1rem;
-    }
+  section {
+    height: auto;
+  }
+  .title-wrapper {
+    font-size: 1.8rem;
+  }
 
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
+  .tagline-wrapper {
+    font-size: 1rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
 }
