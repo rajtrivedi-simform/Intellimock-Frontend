@@ -2,85 +2,82 @@
 <div class="main-container">
   <div class="login">
     <div class="form-title">{{ loginSignal() }}</div>
-    <form
-      action=""
-      method="post"
-      [formGroup]="userDataForm"
-      (ngSubmit)="formHandler()"
-    >
-      @if (loginSignal() === "Register") {
-      <input
-        type="text"
-        name="fullName"
-        id="fullName"
-        formControlName="userFullName"
-        placeholder="Full Name"
-        class="input"
-      />
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="E-Mail..."
-        formControlName="userEmail"
-        class="input"
-      />
-      @if (emailErrorMsg() && userEmail.touched) {
-      <span class="emailError">{{ emailErrorMsg() }}</span>
-      }
-      <input
-        type="password"
-        id="password"
-        name="password"
-        formControlName="userPassword"
-        placeholder="Password..."
-        class="input"
-      />
-      @if (passErrorMsg() && userPassword.touched) {
-      <span class="emailError">{{ passErrorMsg() }}</span
-      >}
-      <input
-        type="password"
-        id="password"
-        name="password"
-        formControlName="confirmPassword"
-        placeholder="Confirm Password..."
-        class="input"
-      />
+    <form action="" method="post" [formGroup]="userDataForm" (ngSubmit)="formHandler()">
+      @if (loginSignal() === 'Register') {
+        <input
+          type="text"
+          name="fullName"
+          id="fullName"
+          formControlName="userFullName"
+          placeholder="Full Name"
+          class="input"
+        />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="E-Mail..."
+          formControlName="userEmail"
+          class="input"
+        />
+        @if (emailErrorMsg() && userEmail.touched) {
+          <span class="emailError">{{ emailErrorMsg() }}</span>
+        }
+        <input
+          type="password"
+          id="password"
+          name="password"
+          formControlName="userPassword"
+          placeholder="Password..."
+          class="input"
+        />
+        @if (passErrorMsg() && userPassword.touched) {
+          <span class="emailError">{{ passErrorMsg() }}</span>
+        }
+        <input
+          type="password"
+          id="password"
+          name="password"
+          formControlName="confirmPassword"
+          placeholder="Confirm Password..."
+          class="input"
+        />
+        @if (conPassErrorMsg() && confirmPassword.touched) {
+          <span class="emailError">{{ conPassErrorMsg() }}</span>
+        }
       } @else {
-      <input
-        type="email"
-        id="email"
-        name="email"
-        placeholder="E-Mail..."
-        formControlName="userEmail"
-        class="input"
-      />
-      @if (emailErrorMsg() && userEmail.touched) {
-      <span class="emailError">{{ emailErrorMsg() }}</span>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="E-Mail..."
+          formControlName="userEmail"
+          class="input"
+        />
+        @if (emailErrorMsg() && userEmail.touched) {
+          <span class="emailError">{{ emailErrorMsg() }}</span>
+        }
+        <input
+          type="password"
+          id="password"
+          name="password"
+          formControlName="userPassword"
+          placeholder="Password..."
+          class="input"
+        />
+        @if (passErrorMsg() && userPassword.touched) {
+          <span class="emailError">{{ passErrorMsg() }}</span>
+        }
       }
-      <input
-        type="password"
-        id="password"
-        name="password"
-        formControlName="userPassword"
-        placeholder="Password..."
-        class="input"
-      />
-      @if (passErrorMsg() && userPassword.touched) {
-      <span class="emailError">{{ passErrorMsg() }}</span
-      >} }
       <button type="submit">
         {{ loginSignal() }}
       </button>
     </form>
     <div class="option-text">
       @if (loginSignal() === 'Register') {
-      <div>Already have an account? <span routerLink="/login">Login</span></div>
+        <div>Already have an account? <span routerLink="/login">Login</span></div>
       } @else {
-      <div>
-        Don't have an account? <span routerLink="/register">Register</span>
-      </div>
+        <div>Don't have an account? <span routerLink="/register">Register</span></div>
       }
     </div>
   </div>

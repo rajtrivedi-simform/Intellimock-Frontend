@@ -91,7 +91,7 @@
     justify-content: space-between;
     text-align: left;
   }
-   .footer .footer-bottom {
+  .footer .footer-bottom {
     flex-direction: row;
     justify-content: space-between;
   }

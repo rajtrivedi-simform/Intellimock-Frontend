@@ -6,8 +6,6 @@ import { DetailsComponent } from './details/details.component';
   selector: 'app-demo-ai',
   imports: [DemoComponent, DetailsComponent],
   templateUrl: './demo-ai.component.html',
-  styleUrl: './demo-ai.component.css'
+  styleUrl: './demo-ai.component.css',
 })
-export class DemoAiComponent {
-
-}
+export class DemoAiComponent {}
