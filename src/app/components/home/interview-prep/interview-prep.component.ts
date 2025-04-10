@@ -8,5 +8,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './interview-prep.component.css',
 })
 export class InterviewPrepComponent {
-  isLogin = signal(localStorage.getItem('isLogin') === 'true');
+  isLogin = signal(false);
+  constructor() {
+    if (typeof window != 'undefined') {
+      this.isLogin.set(localStorage.getItem('isLogin') === 'true');
+    }
+  }
 }
