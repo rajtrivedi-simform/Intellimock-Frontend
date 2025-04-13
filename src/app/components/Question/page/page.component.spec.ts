@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IntdataformComponent } from './intdataform.component';
+import { PageComponent } from './page.component';
 
-describe('IntdataformComponent', () => {
-  let component: IntdataformComponent;
-  let fixture: ComponentFixture<IntdataformComponent>;
+describe('PageComponent', () => {
+  let component: PageComponent;
+  let fixture: ComponentFixture<PageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [IntdataformComponent],
+      imports: [PageComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(IntdataformComponent);
+    fixture = TestBed.createComponent(PageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

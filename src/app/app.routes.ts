@@ -38,4 +38,32 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/Question/page/page.component').then((pa) => pa.PageComponent),
   },
+  {
+    path: "interviews",
+    loadComponent: () => 
+      import('./components/Interview/interviewform/interviewform.component').then((int)=> int.InterviewformComponent)
+  },{
+    path: "interviews/Mock-Interview",
+    loadComponent: () => 
+      import('./components/Interview/mock/mockint/mockint.component').then((mock)=> mock.MockInterviewComponent)
+  },{
+    path: "interviews/Mock-Interview/:id",
+    loadComponent: () => 
+      import('./components/Interview/mock/mock-interview-page/mock-interview-page.component').then((mock)=> mock.MockInterviewPageComponent)
+  },
+  {
+    path: "interviews/Coding-Interview",
+    loadComponent: () => 
+      import('./components/Interview/code/codeint/codeint.component').then((code) => code.CodeintComponent)
+  },
+  {
+    path: "interviews/Coding-Interview/:id",
+    loadComponent: () => 
+      import('./components/Interview/code/code-interview-page/code-interview-page.component').then((code)=> code.CodeInterviewPageComponent)
+  },
+  {
+    path: "**",
+    loadComponent: ()=> 
+      import('./components/common/not-found/not-found.component').then((nf)=> nf.NotFoundComponent)
+  }
 ];
