@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="form-container">
+  <form [formGroup]="interviewData" class="form-content" (ngSubmit)="onSubmit()">
+    <h1>Select <span>Interview Preferences</span></h1>
+
+    <div class="form-group">
+      <label for="interviewType">Select Interview Type:</label>
+      <select id="interviewType" formControlName="interviewType">
+        <option value="">-- Select --</option>
+        <option value="mock">Mock Interview</option>
+        <option value="self">HR Interview</option>
+      </select>
+    </div>
+
+    <div *ngIf="isMockTypeSelected" class="form-group">
+      <label for="language">Select Language:</label>
+      <select id="language" formControlName="language">
+        <option value="">-- Select --</option>
+        <option value="python">Python</option>
+        <option value="javascript">JavaScript</option>
+        <option value="java">Java</option>
+        <option value="c++">C++</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="experience">Experience Level:</label>
+      <select id="experience" formControlName="experience">
+        <option value="">-- Select --</option>
+        <option value="0-1">0-1 Year</option>
+        <option value="2-5">2-5 Years</option>
+        <option value="5+">5+ Years</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="level">Interview Level:</label>
+      <select id="level" formControlName="level">
+        <option value="">-- Select --</option>
+        <option value="junior">Junior Developer</option>
+        <option value="mid">Mid-Level Developer</option>
+        <option value="senior">Senior Developer</option>
+      </select>
+    </div>
+
+    <button type="submit" routerLink="{{ intId }}">Start Interview</button>
+  </form>
+</div>

@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="questions-container">
+  <div class="language-buttons">
+    @for (type of typeOptions; track $index) {
+      <button
+        (click)="filterQuestions(type); changeType(type)"
+        [class.selected]="_selectedType === type"
+      >
+        {{ type }}
+      </button>
+    }
+  </div>
+
+  <div class="question-sections">
+    <div class="question-section">
+      @for (question of filteredQuestions; track $index) {
+        <div class="question-cards">
+          <div class="question-card" routerLink="/question/{{ question.questionId }}">
+            <h3>{{ question.question }}</h3>
+            <div class="question-details">
+              <span class="level">Level: {{ question.level }}</span>
+              <span class="type">Type: {{ question.type }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

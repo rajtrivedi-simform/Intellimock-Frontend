@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import path from 'path';
 
 export const routes: Routes = [
   {
@@ -24,5 +25,17 @@ export const routes: Routes = [
     data: {
       formType: 'Register',
     },
+  },
+  {
+    path: 'questions',
+    loadComponent: () =>
+      import('./components/Question/questionpage/questionpage.component').then(
+        (que) => que.QuestionpageComponent
+      ),
+  },
+  {
+    path: 'question/:id',
+    loadComponent: () =>
+      import('./components/Question/page/page.component').then((pa) => pa.PageComponent),
   },
 ];
