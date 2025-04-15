@@ -67,7 +67,6 @@ export class PageComponent implements OnInit {
       next: (question) => {
         if (question.success) {
           this.questionData = question;
-          console.log('Question:', this.questionData);
         } else {
           console.error('Failed to fetch question:', question.msg);
         }
@@ -83,7 +82,7 @@ export class PageComponent implements OnInit {
       const comment: Comment = {
         id: Date.now().toString(),
         content: this.newComment,
-        author: 'Current User', // This should be replaced with actual user data
+        author: 'Current User',
         timestamp: new Date(),
       };
       this.comments.unshift(comment);

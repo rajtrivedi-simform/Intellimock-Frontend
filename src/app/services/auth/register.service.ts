@@ -10,7 +10,7 @@ export class RegisterService {
   constructor(private http: HttpClient) {}
 
   registerUser(data: userObjRegister) {
-    const url = `${environment.apiURLUser}/register/`;
+    const url = `${environment.apiURLUser}register/`;
     return this.http.post(url, data, {
       withCredentials: true,
     });

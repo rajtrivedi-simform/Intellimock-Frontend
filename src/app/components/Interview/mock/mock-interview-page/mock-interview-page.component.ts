@@ -1,7 +1,9 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { HeaderComponent } from '../../../common/header/header.component';
 
 @Component({
   selector: 'app-mock-interview',
+  imports: [HeaderComponent],
   templateUrl: './mock-interview-page.component.html',
   styleUrls: ['./mock-interview-page.component.css'],
 })

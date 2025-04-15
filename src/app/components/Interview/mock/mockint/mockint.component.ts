@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, signal } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { v4 as uuid } from 'uuid';
 import { HeaderComponent } from '../../../common/header/header.component';
+import { ToastrService } from 'ngx-toastr';
+import { InterviewService } from '../../../../services/interviews/interview.service';
+import { interviewObj } from '../../../../constants/types';
 
 @Component({
   selector: 'app-mock-interview',
@@ -15,11 +18,16 @@ import { HeaderComponent } from '../../../common/header/header.component';
 export class MockInterviewComponent {
   intId = uuid();
   interviewData: FormGroup = new FormGroup({
-    interviewType: new FormControl(''),
+    interviewType: new FormControl('', [Validators.required]),
     language: new FormControl(''),
-    experience: new FormControl(''),
-    level: new FormControl({ disabled: true }),
+    experience: new FormControl('', [Validators.required]),
+    level: new FormControl('', [Validators.required]),
   });
+
+  constructor(
+    private _toast: ToastrService,
+    private _interview: InterviewService
+  ) {}
 
   get isMockTypeSelected(): boolean {
     return this.interviewData.get('interviewType')?.value === 'mock';
@@ -27,9 +35,22 @@ export class MockInterviewComponent {
 
   onSubmit() {
     if (this.interviewData.valid) {
-      console.log('Form Submitted!', this.interviewData.value);
+      const payload: interviewObj = {
+        interviewId: this.intId,
+        interviewType: this.interviewData.controls['interviewType'].value,
+        level: this.interviewData.controls['level'].value,
+        language: this.interviewData.controls['language'].value,
+      };
+      this._interview.postInterview(payload).subscribe({
+        next: (res) => {
+          this._toast.success('Interview Started');
+        },
+        error: (error) => {
+          this._toast.error(error.msg);
+        },
+      });
     } else {
-      console.log('Form is invalid!');
+      this._toast.error('Please Fill all the fields!!!');
     }
   }
 
@@ -46,6 +67,6 @@ export class MockInterviewComponent {
       this.interviewData.patchValue({ level });
     });
 
-    this.interviewData.get('level')?.disable();
+    // this.interviewData.get('level')?.disable();
   }
 }

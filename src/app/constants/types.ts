@@ -44,3 +44,10 @@ export interface apiResponse {
   msg: string;
   data?: object | null;
 }
+
+export interface interviewObj {
+  interviewId: string;
+  interviewType: string;
+  level: string;
+  language?: string;
+}
