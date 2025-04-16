@@ -6,10 +6,10 @@ import { environment } from '../../../environments/environment.development';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private _http: HttpClient) {}
 
   isLoginCheck() {
-    return this.http.get(`${environment.apiURLUser}auth/status`, {
+    return this._http.get(`${environment.apiURLUser}auth/status`, {
       withCredentials: true,
     });
   }

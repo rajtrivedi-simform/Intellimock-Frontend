@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Signal, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/common/auth.service';
-import { error } from 'console';
 import { LogoutService } from '../../../services/auth/logout.service';
 import { ToastrService } from 'ngx-toastr';
 
