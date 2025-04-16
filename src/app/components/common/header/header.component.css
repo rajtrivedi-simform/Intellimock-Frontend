@@ -48,12 +48,13 @@ nav {
   display: none;
 }
 
-.nav-links li {
+.nav-links li,i {
   cursor: pointer;
   transition: color 0.3s ease;
+  align-self: auto;
 }
 
-.nav-links li:hover {
+.nav-links li:hover, i:hover {
   color: #6b27d9;
 }
 

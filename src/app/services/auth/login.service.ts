@@ -10,7 +10,7 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   userLogin(data: userObjLogin) {
-    const url = `${environment.apiURL}login/`;
+    const url = `${environment.apiURLUser}login/`;
     return this.http.post(url, data, {
       withCredentials: true,
     });
