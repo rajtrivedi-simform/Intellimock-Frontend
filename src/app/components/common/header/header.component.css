@@ -71,6 +71,7 @@ button {
   border: 1px solid white;
   background: transparent;
   width: 120px;
+  animation: ease-in-out .1s;
 }
 
 .signin:hover {
