@@ -1,0 +1,18 @@
+<app-header></app-header>
+<div class="question-container">
+  <div class="question-card">
+    <h2>{{ questionData?.data?.question }}</h2>
+    <p>Level: {{ questionData?.data?.level }}</p>
+    <p>Skill: {{ questionData?.data?.skill }}</p>
+    <p>Type: {{ questionData?.data?.type }}</p>
+  </div>
+  <div class="comments-container">
+    <h1>Comments</h1>
+    <div class="add-comment-container">
+      <textarea name="newComment" class="add-comment-textarea"></textarea>
+      <button class="add-comment-btn">Add Comment</button>
+    </div>
+    <div class="comment-list">   
+    </div>
+  </div>
+</div>
