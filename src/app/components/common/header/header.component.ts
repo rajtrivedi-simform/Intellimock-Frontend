@@ -16,8 +16,7 @@ export class HeaderComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private authCheck: AuthService,
-    private router: Router
+    private authCheck: AuthService
   ) {}
 
   toggleMenu() {
@@ -31,15 +30,19 @@ export class HeaderComponent {
       }
     });
 
-    this.authCheck.isLoginCheck().subscribe(
-      (res: any) => {
+    this.authCheck.isLoginCheck().subscribe({
+      next: (res: any) => {
         this.isLogin.set(res.status === 200);
-        localStorage.setItem('isLogin', 'true');
+        if (typeof window != 'undefined') {
+          localStorage.setItem('isLogin', 'true');
+        }
       },
-      (err) => {
+      error: (err) => {
         this.isLogin.set(false);
-        localStorage.setItem('isLogin', 'false');
-      }
-    );
+        if (typeof window != 'undefined') {
+          localStorage.removeItem('isLogin');
+        }
+      },
+    });
   }
 }

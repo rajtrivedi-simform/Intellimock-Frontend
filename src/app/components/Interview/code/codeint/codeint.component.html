@@ -1,1 +1,25 @@
-<p>codeint works!</p>
+<app-header></app-header>
+<div class="form-container">
+  <form [formGroup]="codeInterviewData" class="form-content" (ngSubmit)="onSubmit()">
+    <h1>Select <span>Interview Preferences</span></h1>
+    <div class="form-group">
+      <label for="language">Language:</label>
+      <select>
+        @for (language of programmingLanguages; track $index) {
+          <option value="{{ language }}">{{ language }}</option>
+        }
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="experience">Experience Level:</label>
+      <select id="experience" formControlName="experience">
+        <option value="">-- Select --</option>
+        <option value="0-1">0-1 Year</option>
+        <option value="2-5">2-5 Years</option>
+        <option value="5+">5+ Years</option>
+      </select>
+    </div>
+
+    <button>Start Interview</button>
+  </form>
+</div>

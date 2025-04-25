@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, Signal, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,5 +8,11 @@ import { RouterLink } from '@angular/router';
   styleUrl: './interview-prep.component.css',
 })
 export class InterviewPrepComponent {
-  isLogin = signal(localStorage.getItem('isLogin') === 'true');
+  isLogin = signal<boolean>(false);
+
+  constructor() {
+    if (typeof window != 'undefined') {
+      this.isLogin.set(localStorage.getItem('isLogin') === 'true');
+    }
+  }
 }

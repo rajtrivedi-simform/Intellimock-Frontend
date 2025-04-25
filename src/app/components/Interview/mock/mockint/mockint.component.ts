@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { v4 as uuid } from 'uuid';
 import { HeaderComponent } from '../../../common/header/header.component';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,7 @@ import { interviewObj } from '../../../../constants/types';
 @Component({
   selector: 'app-mock-interview',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, RouterLink, HeaderComponent],
+  imports: [ReactiveFormsModule, CommonModule, HeaderComponent],
   templateUrl: './mockint.component.html',
   styleUrl: './mockint.component.css',
 })
@@ -26,7 +26,8 @@ export class MockInterviewComponent {
 
   constructor(
     private _toast: ToastrService,
-    private _interview: InterviewService
+    private _interview: InterviewService,
+    private _router: Router
   ) {}
 
   get isMockTypeSelected(): boolean {
@@ -44,6 +45,7 @@ export class MockInterviewComponent {
       this._interview.postInterview(payload).subscribe({
         next: (res) => {
           this._toast.success('Interview Started');
+          this._router.navigateByUrl(`interviews/Mock-Interview/${this.intId}`);
         },
         error: (error) => {
           this._toast.error(error.msg);
