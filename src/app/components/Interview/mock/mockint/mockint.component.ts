@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { HeaderComponent } from '../../../common/header/header.component';
 import { ToastrService } from 'ngx-toastr';
 import { InterviewService } from '../../../../services/interviews/interview.service';
-import { interviewObj } from '../../../../constants/types';
+import { mockinterviewObj } from '../../../../constants/types';
 
 @Component({
   selector: 'app-mock-interview',
@@ -36,7 +36,7 @@ export class MockInterviewComponent {
 
   onSubmit() {
     if (this.interviewData.valid) {
-      const payload: interviewObj = {
+      const payload: mockinterviewObj = {
         interviewId: this.intId,
         interviewType: this.interviewData.controls['interviewType'].value,
         level: this.interviewData.controls['level'].value,

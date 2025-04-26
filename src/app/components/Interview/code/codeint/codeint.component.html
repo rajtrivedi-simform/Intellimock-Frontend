@@ -4,7 +4,8 @@
     <h1>Select <span>Interview Preferences</span></h1>
     <div class="form-group">
       <label for="language">Language:</label>
-      <select>
+      <select id="language" formControlName="language">
+        <option value="">-- Select --</option>
         @for (language of programmingLanguages; track $index) {
           <option value="{{ language }}">{{ language }}</option>
         }

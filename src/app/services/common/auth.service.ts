@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   isLoginCheck() {
-    return this.http.get(`${environment.apiURLUser}auth/status/`, {
+    return this.http.get(`${environment.apiURLAuth}auth/status/`, {
       withCredentials: true,
     });
   }

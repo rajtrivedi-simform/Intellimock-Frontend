@@ -16,7 +16,9 @@ export class MockInterviewPageComponent implements OnInit {
     'Angular provides modular development, dependency injection, TypeScript support, and a powerful CLI tool.';
 
   ngOnInit(): void {
-    this.startWebcam();
+    if(typeof window !== 'undefined' && window.navigator.mediaDevices) {
+      this.startWebcam();
+    }
   }
 
   startWebcam(): void {
@@ -31,5 +33,11 @@ export class MockInterviewPageComponent implements OnInit {
       .catch((error) => {
         console.error('Error accessing webcam:', error);
       });
+  }
+
+  ngOnDestroy(){
+    if (this.videoStream) {
+      this.videoStream.getTracks().forEach((track) => track.stop());
+    }
   }
 }

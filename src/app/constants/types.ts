@@ -45,9 +45,15 @@ export interface apiResponse {
   data?: object | null;
 }
 
-export interface interviewObj {
+export interface mockinterviewObj {
   interviewId: string;
   interviewType: string;
   level: string;
   language?: string;
+}
+
+export interface codeinterviewobj {
+  interviewId: string;
+  language: string;
+  experience: string;
 }

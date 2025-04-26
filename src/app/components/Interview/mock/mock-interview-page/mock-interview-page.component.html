@@ -1,20 +1,27 @@
 <app-header></app-header>
 <div class="mock-interview-container">
-  <h1>Mock <span>Interview</span></h1>
+  <h1 class="page-title">Mock Interview <span>Session</span></h1>
+
   <div class="content">
-    <div class="container">
-      <div class="question-section">
-        <h2>Question:</h2>
-        <p>{{ question }}</p>
+    <!-- Left Section: Question + Answer -->
+    <div class="left-section">
+      <div class="question-block">
+        <h2 class="section-title">Question</h2>
+        <p class="question-text">{{ question }}</p>
       </div>
-      <div class="answer-section">
-        <h2>Answer:</h2>
-        <p>{{ answer }}</p>
+
+      <div class="answer-block">
+        <h2 class="section-title">Your Answer</h2>
+        <textarea class="answer-input" placeholder="Type your answer here...">{{ answer }}</textarea>
       </div>
     </div>
-    <div class="webcam-section">
-      <h2>Live Preview</h2>
-      <video #videoElement autoplay></video>
+
+    <!-- Right Section: Webcam -->
+    <div class="right-section">
+      <h2 class="section-title">Your Webcam</h2>
+      <div class="video-container">
+        <video autoplay #videoElement></video>
+      </div>
     </div>
   </div>
 </div>

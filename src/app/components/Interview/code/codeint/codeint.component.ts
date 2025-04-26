@@ -3,6 +3,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HeaderComponent } from '../../../common/header/header.component';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { v4 as uuid } from 'uuid';
+import { codeinterviewobj } from '../../../../constants/types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-codeint',
@@ -45,11 +48,18 @@ export class CodeintComponent {
     experience: this.experience,
   });
 
-  constructor(private _toast: ToastrService) {}
+  constructor(private _toast: ToastrService, private _router: Router) {}
 
   onSubmit() {
     if (this.codeInterviewData.valid) {
-      console.log(this.codeInterviewData.value);
+      const codeintId = uuid();
+      const payload: codeinterviewobj = {
+        interviewId: codeintId,
+        language: this.codeInterviewData.value.language,
+        experience: this.codeInterviewData.value.experience
+      }
+      // Service integration pending for now
+      this._router.navigateByUrl(`interviews/Coding-Interview/${codeintId}`);
     } else {
       this._toast.error('Please fill in all fields correctly.');
     }
