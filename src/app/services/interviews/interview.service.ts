@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { apiResponse, mockinterviewObj } from '../../constants/types';
+import { apiResponse, interviewObj, mockInterviewObj } from '../../constants/types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,11 +10,19 @@ import { Observable } from 'rxjs';
 export class InterviewService {
   constructor(private _http: HttpClient) {}
 
-  postInterview(data: mockinterviewObj): Observable<apiResponse> {
+  postInterview(data: interviewObj): Observable<apiResponse> {
     const url = `${environment.apiURLInt}`;
 
     return this._http.post<apiResponse>(url, data, {
       withCredentials: true,
     });
+  }
+
+  postMockInterview(data: mockInterviewObj): Observable<apiResponse>{
+    const url = `${environment.apiURLInt}mock-interview/`;
+
+    return this._http.post<apiResponse>(url, data, {
+      withCredentials: true,
+    })
   }
 }

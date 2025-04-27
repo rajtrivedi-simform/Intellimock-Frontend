@@ -4,7 +4,7 @@ import { HeaderComponent } from '../../../common/header/header.component';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { v4 as uuid } from 'uuid';
-import { codeinterviewobj } from '../../../../constants/types';
+import { codeInterviewObj, interviewObj } from '../../../../constants/types';
 import { Router } from '@angular/router';
 
 @Component({
@@ -53,11 +53,12 @@ export class CodeintComponent {
   onSubmit() {
     if (this.codeInterviewData.valid) {
       const codeintId = uuid();
-      const payload: codeinterviewobj = {
+      const payload: interviewObj = {
         interviewId: codeintId,
+        interviewType: "code",
         language: this.codeInterviewData.value.language,
-        experience: this.codeInterviewData.value.experience
       }
+      console.log(payload)
       // Service integration pending for now
       this._router.navigateByUrl(`interviews/Coding-Interview/${codeintId}`);
     } else {
