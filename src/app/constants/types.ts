@@ -45,16 +45,11 @@ export interface apiResponse {
   data?: object | null;
 }
 
-export interface interviewObj {
-  interviewId: string;
+export interface mockInterviewObj {
+  mockInterviewId: string;
   interviewType: string;
   level: string;
-  language?: string;
-}
-
-export interface mockInterviewObj{
-  mockInterviewId: string;
-  interviewId: string;
+  skill: string;
 }
 
 export interface codeInterviewObj {
@@ -63,4 +58,4 @@ export interface codeInterviewObj {
   language: string;
   interviewType: string;
   experience: string;
-} 
+}

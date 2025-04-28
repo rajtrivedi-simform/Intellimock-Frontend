@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { HeaderComponent } from '../../../common/header/header.component';
 import { ToastrService } from 'ngx-toastr';
 import { InterviewService } from '../../../../services/interviews/interview.service';
-import { interviewObj } from '../../../../constants/types';
+import { mockInterviewObj } from '../../../../constants/types';
 
 @Component({
   selector: 'app-mock-interview',
@@ -36,15 +36,21 @@ export class MockInterviewComponent {
 
   onSubmit() {
     if (this.interviewData.valid) {
-      const payload: interviewObj = {
-        interviewId: this.intId,
-        interviewType: 'mock',
+      const payload: mockInterviewObj = {
+        mockInterviewId: this.intId,
+        interviewType: this.interviewData.controls['interviewType'].value,
         level: this.interviewData.controls['level'].value,
-        language: this.interviewData.controls['language'].value,
+        skill: this.interviewData.controls['language'].value,
       };
-      this._interview.postInterview(payload).subscribe({
+
+      console.log(payload);
+      this._interview.postMockInterview(payload).subscribe({
         next: (res) => {
           this._toast.success('Interview Started');
+          console.log(res.data);
+          if (typeof window != undefined) {
+            localStorage.setItem('Questions', JSON.stringify(res.data));
+          }
           this._router.navigateByUrl(`interviews/Mock-Interview/${this.intId}`);
         },
         error: (error) => {
@@ -69,6 +75,6 @@ export class MockInterviewComponent {
       this.interviewData.patchValue({ level });
     });
 
-    // this.interviewData.get('level')?.disable();
+    this.interviewData.get('level')?.disable();
   }
 }
