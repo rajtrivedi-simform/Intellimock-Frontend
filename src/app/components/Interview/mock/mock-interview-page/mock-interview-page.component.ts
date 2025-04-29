@@ -1,11 +1,12 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../../../common/header/header.component';
-import { questionObj } from '../../../../constants/types';
 import { DataSharingService } from '../../../../services/common/data-sharing.service';
+import { QuesAnswerObj } from '../../../../constants/types';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-mock-interview',
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, FormsModule],
   templateUrl: './mock-interview-page.component.html',
   styleUrls: ['./mock-interview-page.component.css'],
 })
@@ -13,9 +14,9 @@ export class MockInterviewPageComponent implements OnInit {
   @ViewChild('videoElement', { static: false }) videoElement!: ElementRef;
   videoStream!: MediaStream;
   question: string[] = [];
-
-  answer: string =
-    'Angular provides modular development, dependency injection, TypeScript support, and a powerful CLI tool.';
+  answers: Array<QuesAnswerObj> = [];
+  currentAnswer:string = ""
+  answeredQuestion:number = 0
 
   constructor(private _dataShare: DataSharingService) {}
 
@@ -32,8 +33,6 @@ export class MockInterviewPageComponent implements OnInit {
       next: (data) => {
         if (data instanceof Array) {
           this.question = data;
-
-          console.log(data);
         }
       },
     });
@@ -56,6 +55,28 @@ export class MockInterviewPageComponent implements OnInit {
   ngOnDestroy() {
     if (this.videoStream) {
       this.videoStream.getTracks().forEach((track) => track.stop());
+    }
+  }
+
+  nextQuestion(){
+    if(this.answeredQuestion < this.question.length-1){
+      const answerObj: QuesAnswerObj = {
+        question: this.question[this.answeredQuestion],
+        answer: this.currentAnswer
+      }
+
+      this.answers.push(answerObj);
+      this.currentAnswer = ""
+      this.answeredQuestion++;
+    } else {
+      const answerObj: QuesAnswerObj = {
+        question: this.question[this.answeredQuestion],
+        answer: this.currentAnswer
+      }
+
+      this.answers.push(answerObj);
+      // form logic to submit the answers
+      console.log(this.answers)
     }
   }
 }

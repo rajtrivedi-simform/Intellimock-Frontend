@@ -61,6 +61,26 @@
   transition: 0.3s ease;
 }
 
+.left-section button{
+  background: linear-gradient(90deg, #a855f7, #9333ea);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.left-section button:hover {
+  background: linear-gradient(90deg, #9333ea, #a855f7);
+  transform: scale(1.05);
+}
+.left-section button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.3);
+}
+
 .left-section:hover,
 .right-section:hover {
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);

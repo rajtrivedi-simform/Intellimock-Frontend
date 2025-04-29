@@ -67,3 +67,8 @@ export interface questionObj {
   question4?: string;
   question5?: string;
 }
+
+export interface QuesAnswerObj {
+  question: string;
+  answer: string;
+}
