@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { v4 as uuid } from 'uuid';
 import { HeaderComponent } from '../../../common/header/header.component';
 import { ToastrService } from 'ngx-toastr';
 import { InterviewService } from '../../../../services/interviews/interview.service';
 import { mockInterviewObj } from '../../../../constants/types';
+import { DataSharingService } from '../../../../services/common/data-sharing.service';
 
 @Component({
   selector: 'app-mock-interview',
@@ -27,7 +28,8 @@ export class MockInterviewComponent {
   constructor(
     private _toast: ToastrService,
     private _interview: InterviewService,
-    private _router: Router
+    private _router: Router,
+    private _dataShare: DataSharingService
   ) {}
 
   get isMockTypeSelected(): boolean {
@@ -48,9 +50,8 @@ export class MockInterviewComponent {
         next: (res) => {
           this._toast.success('Interview Started');
           console.log(res.data);
-          if (typeof window != undefined) {
-            localStorage.setItem('Questions', JSON.stringify(res.data));
-          }
+          const questionArray = Object.values(res.data as object);
+          this._dataShare.onChange(questionArray);
           this._router.navigateByUrl(`interviews/Mock-Interview/${this.intId}`);
         },
         error: (error) => {
