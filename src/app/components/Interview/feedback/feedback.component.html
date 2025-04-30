@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="feedback-container">
+  <div class="intro">
+    <h1>Mock Interview Feedback</h1>
+    <p>Review your answers and feedback for each question below. Click on a card to see full details.</p>
+  </div>
+  <div class="cards">
+    @for (obj of feedBack; track $index) {
+      <div class="card" (click)="openModal(obj)">
+        <div class="question">
+          <span>Question {{ $index + 1 }}:</span>
+          {{ obj.question | slice:0:70 }}...
+        </div>
+        <div class="feedback-preview">
+          <span>Feedback:</span>
+          {{ obj.feedback | slice:0:100 }}...
+        </div>
+      </div>
+    }
+  </div>
+  <div class="modal-backdrop" *ngIf="selectedFeedback" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h2>Question</h2>
+      <p>{{ selectedFeedback.question }}</p>
+      <h2>Answer</h2>
+      <p>{{ selectedFeedback.answer }}</p>
+      <h2>Feedback</h2>
+      <p>{{ selectedFeedback.feedback }}</p>
+      <button class="close-btn" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>

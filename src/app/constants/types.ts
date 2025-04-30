@@ -72,3 +72,16 @@ export interface QuesAnswerObj {
   question: string;
   answer: string;
 }
+
+export interface feedbackObj {
+  question: string;
+  answer: string;
+  feedback: string;
+}
+
+export interface feedbackAPIResponse {
+  success: boolean;
+  status: number;
+  message: string;
+  data: Array<feedbackObj>;
+}
