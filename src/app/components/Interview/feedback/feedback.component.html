@@ -1,0 +1,19 @@
+<div class="feeback-container">
+  <div class="cards">
+    @for (obj of feedBack; track $index) {
+      <div class="card">
+        <div class="question">
+          <span>Question {{ $index + 1 }}:</span>{{ obj.question }}
+        </div>
+        <br />
+        <div class="answer">
+          <span>Answer:</span>
+          {{ obj.answer }}
+        </div>
+        <br />
+        <div class="feedback"><span>Feedback:</span>{{ obj.feedback }}</div>
+        <br />
+      </div>
+    }
+  </div>
+</div>
