@@ -10,8 +10,8 @@ import { RouterLink } from '@angular/router';
 export class InterviewPrepComponent {
   isLogin = signal<boolean>(false);
 
-  ngOnInit(){
-    if(typeof window != 'undefined'){
+  ngOnInit() {
+    if (typeof window != 'undefined') {
       this.isLogin.set(localStorage.getItem('isLogin') === 'true');
     }
   }

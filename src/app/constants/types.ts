@@ -54,9 +54,7 @@ export interface mockInterviewObj {
 
 export interface codeInterviewObj {
   codeInterviewId: string;
-  interviewId: string;
   language: string;
-  interviewType: string;
   experience: string;
 }
 
@@ -71,6 +69,19 @@ export interface questionObj {
 export interface QuesAnswerObj {
   question: string;
   answer: string;
+}
+
+export interface codingQuestionObj {
+  title: string;
+  difficulty: 'Easy' | 'Medium' | 'Hard';
+  topic: string;
+  experience_level: 'Beginner' | 'Junior' | 'Mid' | 'Senior';
+  problem_statement: string;
+  example_input: string;
+  example_output: string;
+  hints: string[];
+  follow_up_questions: string[];
+  expected_skills: string[];
 }
 
 export interface feedbackObj {

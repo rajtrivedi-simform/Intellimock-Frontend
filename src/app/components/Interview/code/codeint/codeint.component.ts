@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { v4 as uuid } from 'uuid';
 import { codeInterviewObj } from '../../../../constants/types';
 import { Router } from '@angular/router';
+import { DataSharingService } from '../../../../services/common/data-sharing.service';
+import { InterviewService } from '../../../../services/interviews/interview.service';
 
 @Component({
   selector: 'app-codeint',
@@ -46,20 +48,30 @@ export class CodeintComponent {
 
   constructor(
     private _toast: ToastrService,
-    private _router: Router
+    private _router: Router,
+    private _interview: InterviewService,
+    private _dataShare: DataSharingService
   ) {}
 
   onSubmit() {
     if (this.codeInterviewData.valid) {
       const codeintId = uuid();
-      // const payload: interviewObj = {
-      //   interviewId: codeintId,
-      //   interviewType: 'code',
-      //   language: this.codeInterviewData.value.language,
-      // };
-      // console.log(payload);
-      // Service integration pending for now
-      this._router.navigateByUrl(`interviews/Coding-Interview/${codeintId}`);
+      const payload: codeInterviewObj = {
+        codeInterviewId: codeintId,
+        language: this.codeInterviewData.value.language,
+        experience: this.codeInterviewData.value.experience,
+      };
+
+      this._interview.postCodeInterview(payload).subscribe({
+        next: (res) => {
+          this._toast.success('Interview Started');
+          this._dataShare.onChangeCodeQuestion(res.data as object);
+          this._router.navigateByUrl(`interviews/Coding-Interview/${codeintId}`);
+        },
+        error: (error) => {
+          this._toast.error(error.msg);
+        },
+      });
     } else {
       this._toast.error('Please fill in all fields correctly.');
     }

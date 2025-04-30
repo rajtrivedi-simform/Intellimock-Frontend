@@ -8,6 +8,7 @@ import { feedbackObj } from '../../constants/types';
 export class DataSharingService {
   _subject = new BehaviorSubject<T>([]);
   _feedbackSubject = new BehaviorSubject<Array<feedbackObj>>([]);
+  _codeQuestionSubject = new BehaviorSubject({});
   constructor() {}
 
   onChange(data: Array<T>) {
@@ -16,6 +17,10 @@ export class DataSharingService {
 
   onChangeObj(data: Array<feedbackObj>) {
     this._feedbackSubject.next(data);
+  }
+
+  onChangeCodeQuestion(data: object) {
+    this._codeQuestionSubject.next(data);
   }
 }
 type T = Array<string> | object;

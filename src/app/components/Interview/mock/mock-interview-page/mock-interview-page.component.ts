@@ -30,7 +30,7 @@ export class MockInterviewPageComponent implements OnInit {
     this._route.paramMap.subscribe((params) => (this._intId = params.get('id') as string));
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     if (typeof window !== 'undefined' && window.navigator.mediaDevices) {
       this.startWebcam();
     }
@@ -42,17 +42,12 @@ export class MockInterviewPageComponent implements OnInit {
     this._dataShare._subject.subscribe({
       next: (data) => {
         if (data instanceof Array) {
-          // this.question = data;
-          this.question = [
-            'Describe a situation where you had to explain a complex technical concept to a non-technical person (e.g., someone in HR). How did you approach it, and what were the key strategies you used to ensure they understood?',
-            'Imagine HR is implementing a new performance review system that relies heavily on data and algorithms. What potential biases might arise within this system, and how could a developer contribute to mitigating them during development?',
-            'HR is considering using an AI-powered chatbot for initial candidate screening. What are some ethical considerations a developer should be aware of when building such a system, especially concerning fairness and transparency?',
-            'Suppose HR needs a tool to track employee training and certifications. Briefly outline the key features you would include in the database schema to ensure data integrity and efficient reporting.',
-            'You are asked to build an API endpoint for HR to retrieve anonymized employee data for diversity and inclusion reporting. What measures would you take to ensure the data is truly anonymized and complies with privacy regulations like GDPR or CCPA?',
-          ];
+          this.question = data;
         }
       },
     });
+
+    document.addEventListener('visibilitychange', this.handleTabSwitch);
   }
 
   startWebcam(): void {
@@ -72,6 +67,14 @@ export class MockInterviewPageComponent implements OnInit {
   ngOnDestroy() {
     if (this.videoStream) {
       this.videoStream.getTracks().forEach((track) => track.stop());
+    }
+
+    document.removeEventListener('visibilitychange', this.handleTabSwitch);
+  }
+
+  handleTabSwitch() {
+    if (document.hidden) {
+      alert('Interview Ended!!');
     }
   }
 

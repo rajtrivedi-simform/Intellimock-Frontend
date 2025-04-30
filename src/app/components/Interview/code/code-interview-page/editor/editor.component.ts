@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-editor',
   imports: [CommonModule],
   templateUrl: './editor.component.html',
-  styleUrl: './editor.component.css'
+  styleUrl: './editor.component.css',
 })
 export class EditorComponent {
   code: string = '// Write your code here...';

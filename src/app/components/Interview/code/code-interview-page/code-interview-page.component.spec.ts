@@ -8,9 +8,8 @@ describe('CodeInterviewPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CodeInterviewPageComponent]
-    })
-    .compileComponents();
+      imports: [CodeInterviewPageComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CodeInterviewPageComponent);
     component = fixture.componentInstance;

@@ -32,9 +32,7 @@
       routerLink="{{ selectedOption === 'mock' ? 'Mock-Interview' : 'Coding-Interview' }}"
     >
       Start
-      {{
-        selectedOption === 'mock' ? 'Mock' : selectedOption === 'coding' ? 'Coding' : ''
-      }}
+      {{ selectedOption === 'mock' ? 'Mock' : selectedOption === 'coding' ? 'Coding' : '' }}
       Interview
     </button>
   </div>

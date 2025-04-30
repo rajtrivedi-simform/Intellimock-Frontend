@@ -49,7 +49,6 @@ export class MockInterviewComponent {
       this._interview.postMockInterview(payload).subscribe({
         next: (res) => {
           this._toast.success('Interview Started');
-          console.log(res.data);
           const questionArray = Object.values(res.data as object);
           this._dataShare.onChange(questionArray);
           this._router.navigateByUrl(`interviews/Mock-Interview/${this.intId}`);

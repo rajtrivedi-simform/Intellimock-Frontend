@@ -6,6 +6,7 @@ import {
   mockInterviewObj,
   QuesAnswerObj,
   feedbackAPIResponse,
+  codeInterviewObj,
 } from '../../constants/types';
 import { Observable } from 'rxjs';
 
@@ -27,6 +28,14 @@ export class InterviewService {
     const url = `${environment.apiURLInt}get-mock-feedback/`;
 
     return this._http.post<feedbackAPIResponse>(url, data, {
+      withCredentials: true,
+    });
+  }
+
+  postCodeInterview(data: codeInterviewObj): Observable<apiResponse> {
+    const url = `${environment.apiURLInt}generate-codeinterview/`;
+
+    return this._http.post<apiResponse>(url, data, {
       withCredentials: true,
     });
   }

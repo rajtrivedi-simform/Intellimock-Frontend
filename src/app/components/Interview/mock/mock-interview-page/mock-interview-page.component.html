@@ -7,15 +7,28 @@
     <div class="left-section">
       <div class="question-block">
         <h2 class="section-title">Question {{ answeredQuestion + 1 }} of {{ question.length }}</h2>
-        <p class="question-text">{{ question[answeredQuestion] }}</p>
+        <p
+          class="question-text"
+          (copy)="$event.preventDefault()"
+          (contextmenu)="$event.preventDefault()"
+        >
+          {{ question[answeredQuestion] }}
+        </p>
       </div>
 
       <div class="answer-block">
         <h2 class="section-title">Your Answer</h2>
-        <textarea [(ngModel)]="currentAnswer" class="answer-input" placeholder="Type your answer here..."></textarea>
+        <textarea
+          [(ngModel)]="currentAnswer"
+          (paste)="$event.preventDefault()"
+          class="answer-input"
+          placeholder="Type your answer here..."
+        ></textarea>
       </div>
 
-      <button (click)="nextQuestion()">{{ answeredQuestion < question.length -1 ? "Next" : "Finish Interview" }}</button>
+      <button (click)="nextQuestion()">
+        {{ answeredQuestion < question.length - 1 ? 'Next' : 'Finish Interview' }}
+      </button>
       <button (click)="nextQuestion()">skip</button>
     </div>
 

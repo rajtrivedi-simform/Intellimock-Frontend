@@ -5,10 +5,8 @@ import { EditorComponent } from './editor/editor.component';
 
 @Component({
   selector: 'app-code-interview-page',
-  imports: [HeaderComponent,QuestionComponent, EditorComponent],
+  imports: [HeaderComponent, QuestionComponent, EditorComponent],
   templateUrl: './code-interview-page.component.html',
-  styleUrl: './code-interview-page.component.css'
+  styleUrl: './code-interview-page.component.css',
 })
-export class CodeInterviewPageComponent {
-
-}
+export class CodeInterviewPageComponent {}

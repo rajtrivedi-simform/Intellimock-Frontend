@@ -6,23 +6,23 @@ import { error } from 'console';
   selector: 'app-user-profile',
   imports: [],
   templateUrl: './user-profile.component.html',
-  styleUrl: './user-profile.component.css'
+  styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent {
-  constructor(private _userService: UserProfileService){}
+  constructor(private _userService: UserProfileService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.fetchUserProfile();
   }
 
-  fetchUserProfile(){
+  fetchUserProfile() {
     this._userService.getUserProfile().subscribe({
       next: (data) => {
         console.log(data);
-      }, 
+      },
       error: (error) => {
         console.error('Error fetching user profile:', error);
-      }
-    })
+      },
+    });
   }
 }

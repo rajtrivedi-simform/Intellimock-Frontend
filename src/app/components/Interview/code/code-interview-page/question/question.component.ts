@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { DataSharingService } from '../../../../../services/common/data-sharing.service';
 
 @Component({
   selector: 'app-question',
   imports: [CommonModule],
   templateUrl: './question.component.html',
-  styleUrl: './question.component.css'
+  styleUrl: './question.component.css',
 })
 export class QuestionComponent {
   question = {
@@ -15,10 +16,16 @@ export class QuestionComponent {
     input: `nums = [2,7,11,15], target = 9`,
     output: `[0,1]`,
     constraints: [
-      "2 <= nums.length <= 10^4",
-      "-10^9 <= nums[i] <= 10^9",
-      "-10^9 <= target <= 10^9",
-      "Only one valid answer exists."
-    ]
+      '2 <= nums.length <= 10^4',
+      '-10^9 <= nums[i] <= 10^9',
+      '-10^9 <= target <= 10^9',
+      'Only one valid answer exists.',
+    ],
   };
+
+  constructor(private _dataShare: DataSharingService) {}
+
+  ngOnInit() {
+    this._dataShare._codeQuestionSubject.subscribe((data) => data);
+  }
 }
