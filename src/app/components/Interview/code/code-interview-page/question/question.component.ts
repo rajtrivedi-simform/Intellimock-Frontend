@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DataSharingService } from '../../../../../services/common/data-sharing.service';
+import { codingQuestionObj } from '../../../../../constants/types';
 
 @Component({
   selector: 'app-question',
@@ -9,23 +10,24 @@ import { DataSharingService } from '../../../../../services/common/data-sharing.
   styleUrl: './question.component.css',
 })
 export class QuestionComponent {
-  question = {
-    title: 'Two Sum',
-    difficulty: 'Easy',
-    description: `Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.`,
-    input: `nums = [2,7,11,15], target = 9`,
-    output: `[0,1]`,
-    constraints: [
-      '2 <= nums.length <= 10^4',
-      '-10^9 <= nums[i] <= 10^9',
-      '-10^9 <= target <= 10^9',
-      'Only one valid answer exists.',
-    ],
+  question: codingQuestionObj = {
+    title: '',
+    difficulty: '',
+    topic: '',
+    experience_level: '',
+    problem_statement: '',
+    example_input: '',
+    example_output: '',
+    hints: [''],
+    follow_up_questions: [''],
+    expected_skills: [''],
   };
 
   constructor(private _dataShare: DataSharingService) {}
 
   ngOnInit() {
-    this._dataShare._codeQuestionSubject.subscribe((data) => data);
+    this._dataShare._codeQuestionSubject.subscribe((data) => {
+      this.question = data;
+    });
   }
 }

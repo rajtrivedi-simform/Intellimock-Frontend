@@ -71,11 +71,16 @@ export interface QuesAnswerObj {
   answer: string;
 }
 
+export interface mockFeedbackPayload {
+  feedBackArray: Array<QuesAnswerObj>;
+  intId: string;
+}
+
 export interface codingQuestionObj {
   title: string;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
+  difficulty: 'Easy' | 'Medium' | 'Hard' | '';
   topic: string;
-  experience_level: 'Beginner' | 'Junior' | 'Mid' | 'Senior';
+  experience_level: 'Beginner' | 'Junior' | 'Mid' | 'Senior' | '';
   problem_statement: string;
   example_input: string;
   example_output: string;

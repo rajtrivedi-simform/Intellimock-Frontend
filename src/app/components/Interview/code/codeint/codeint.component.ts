@@ -4,7 +4,7 @@ import { HeaderComponent } from '../../../common/header/header.component';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { v4 as uuid } from 'uuid';
-import { codeInterviewObj } from '../../../../constants/types';
+import { codeInterviewObj, codingQuestionObj } from '../../../../constants/types';
 import { Router } from '@angular/router';
 import { DataSharingService } from '../../../../services/common/data-sharing.service';
 import { InterviewService } from '../../../../services/interviews/interview.service';
@@ -65,8 +65,10 @@ export class CodeintComponent {
       this._interview.postCodeInterview(payload).subscribe({
         next: (res) => {
           this._toast.success('Interview Started');
-          this._dataShare.onChangeCodeQuestion(res.data as object);
-          this._router.navigateByUrl(`interviews/Coding-Interview/${codeintId}`);
+          if (isCodingQuestionObj(res.data)) {
+            this._dataShare.onChangeCodeQuestion(res.data);
+            this._router.navigateByUrl(`interviews/Coding-Interview/${codeintId}`);
+          }
         },
         error: (error) => {
           this._toast.error(error.msg);
@@ -76,4 +78,21 @@ export class CodeintComponent {
       this._toast.error('Please fill in all fields correctly.');
     }
   }
+}
+
+function isCodingQuestionObj(obj: any): obj is codingQuestionObj {
+  return (
+    obj &&
+    typeof obj === 'object' &&
+    typeof obj.title === 'string' &&
+    typeof obj.difficulty === 'string' &&
+    typeof obj.topic === 'string' &&
+    typeof obj.experience_level === 'string' &&
+    typeof obj.problem_statement === 'string' &&
+    typeof obj.example_input === 'string' &&
+    typeof obj.example_output === 'string' &&
+    Array.isArray(obj.hints) &&
+    Array.isArray(obj.follow_up_questions) &&
+    Array.isArray(obj.expected_skills)
+  );
 }

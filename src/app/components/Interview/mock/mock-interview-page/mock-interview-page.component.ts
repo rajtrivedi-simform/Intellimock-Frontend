@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../../../common/header/header.component';
 import { DataSharingService } from '../../../../services/common/data-sharing.service';
-import { QuesAnswerObj } from '../../../../constants/types';
+import { mockFeedbackPayload, QuesAnswerObj } from '../../../../constants/types';
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InterviewService } from '../../../../services/interviews/interview.service';
@@ -27,16 +27,17 @@ export class MockInterviewPageComponent implements OnInit {
     private _route: ActivatedRoute,
     private _feedback: InterviewService
   ) {
-    this._route.paramMap.subscribe((params) => (this._intId = params.get('id') as string));
+    this._route.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (typeof id === 'string') {
+        this._intId = id;
+      }
+    });
   }
 
   ngOnInit() {
     if (typeof window !== 'undefined' && window.navigator.mediaDevices) {
       this.startWebcam();
-    }
-
-    if (typeof window !== 'undefined' && localStorage) {
-      this.question = JSON.parse(localStorage.getItem('Questions') as string);
     }
 
     this._dataShare._subject.subscribe({
@@ -96,8 +97,11 @@ export class MockInterviewPageComponent implements OnInit {
 
       this.answers.push(answerObj);
       // form logic to submit the answers
-      console.log(this.answers);
-      this._feedback.generateFeedbackMockInterview(this.answers).subscribe({
+      const payload: mockFeedbackPayload = {
+        feedBackArray: this.answers,
+        intId: this._intId,
+      };
+      this._feedback.generateFeedbackMockInterview(payload).subscribe({
         next: (res) => {
           this._dataShare.onChangeObj(res.data);
           this._router.navigateByUrl(`/feedback/${this._intId}`);

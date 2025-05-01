@@ -59,6 +59,16 @@ input:focus {
   background: rgba(255, 255, 255, 0.3);
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 option {
   background: #0a0f1e;
   color: white;

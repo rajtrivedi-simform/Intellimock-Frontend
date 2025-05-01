@@ -44,13 +44,13 @@ export class MockInterviewComponent {
         level: this.interviewData.controls['level'].value,
         skill: this.interviewData.controls['language'].value,
       };
-
-      console.log(payload);
       this._interview.postMockInterview(payload).subscribe({
         next: (res) => {
           this._toast.success('Interview Started');
-          const questionArray = Object.values(res.data as object);
-          this._dataShare.onChange(questionArray);
+          if (res.data instanceof Object) {
+            const questionArray = Object.values(res.data);
+            this._dataShare.onChange(questionArray);
+          }
           this._router.navigateByUrl(`interviews/Mock-Interview/${this.intId}`);
         },
         error: (error) => {
@@ -65,7 +65,9 @@ export class MockInterviewComponent {
   ngOnInit() {
     this.interviewData.get('experience')?.valueChanges.subscribe((value) => {
       let level = '';
-      if (value === '0-1') {
+      if (value === '0') {
+        level = 'fresher';
+      } else if (value === '1') {
         level = 'junior';
       } else if (value === '2-5') {
         level = 'mid';
