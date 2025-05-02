@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Signal, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/common/auth.service';
 import { LogoutService } from '../../../services/auth/logout.service';
@@ -38,12 +38,15 @@ export class HeaderComponent {
     this._authCheck.isLoginCheck().subscribe({
       next: (res: any) => {
         this.isLogin.set(res.status === 200);
-        localStorage.setItem('isLogin', 'true');
+        if (typeof window != 'undefined' && typeof localStorage != 'undefined') {
+          localStorage.setItem('isLogin', 'true');
+        }
       },
-      error: (err) => {
+      error: () => {
         this.isLogin.set(false);
-        localStorage.setItem('isLogin', 'false');
-      },
+        if (typeof window != 'undefined' && typeof localStorage != 'undefined') {
+          localStorage.setItem('isLogin', 'false');
+        }
     });
   }
 

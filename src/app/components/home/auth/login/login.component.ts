@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit {
         }
 
         this.register.registerUser(data).subscribe({
-          next: (res) => {
+          next: () => {
             this.toast.success('Account created successfully!');
             this.router.navigateByUrl('login');
           },
@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit {
           userPassword: this.userDataForm.get('userPassword')?.value,
         };
         this.userLogin.userLogin(data).subscribe({
-          next: (res) => {
+          next: () => {
             this.toast.success('Login');
             this.router.navigateByUrl('');
           },
