@@ -35,7 +35,6 @@ export class HeaderComponent {
       }
     });
 
-
     this._authCheck.isLoginCheck().subscribe({
       next: (res: any) => {
         this.isLogin.set(res.status === 200);
