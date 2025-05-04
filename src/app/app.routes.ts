@@ -37,4 +37,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/Question/page/page.component').then((pa) => pa.PageComponent),
   },
+  {
+    path: 'user-profile',
+    loadComponent: () => import('./components/user/user-profile/user-profile.component').then((up)=> up.UserProfileComponent)
+  },
+  {
+    path: 'user-register',
+    loadComponent: () => import('./components/user/user-profile-form/user-profile-form.component').then((upf)=> upf.UserProfileFormComponent)
+  }
 ];

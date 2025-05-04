@@ -48,7 +48,7 @@ export class HeaderComponent {
         if (typeof window != 'undefined' && typeof localStorage != 'undefined') {
           localStorage.setItem('isLogin', 'false');
         }
-    });
+    }});
   }
 
   logout() {
