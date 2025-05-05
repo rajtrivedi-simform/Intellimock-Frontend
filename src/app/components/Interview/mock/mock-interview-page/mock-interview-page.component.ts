@@ -5,6 +5,8 @@ import { mockFeedbackPayload, QuesAnswerObj } from '../../../../constants/types'
 import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { InterviewService } from '../../../../services/interviews/interview.service';
+import { ToastrService } from 'ngx-toastr';
+import { TerminateInterviewService } from '../../../../services/interviews/terminate-interview.service';
 
 @Component({
   selector: 'app-mock-interview',
@@ -20,12 +22,15 @@ export class MockInterviewPageComponent implements OnInit {
   answers: Array<QuesAnswerObj> = [];
   currentAnswer: string = '';
   answeredQuestion: number = 0;
+  tabSwitches: number = 0;
 
   constructor(
     private _dataShare: DataSharingService,
     private _router: Router,
     private _route: ActivatedRoute,
-    private _feedback: InterviewService
+    private _feedback: InterviewService,
+    private _toast: ToastrService,
+    private _terminate: TerminateInterviewService
   ) {
     this._route.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -48,7 +53,9 @@ export class MockInterviewPageComponent implements OnInit {
       },
     });
 
-    document.addEventListener('visibilitychange', this.handleTabSwitch);
+    if (typeof document != 'undefined') {
+      document.addEventListener('visibilitychange', this.handleTabSwitch.bind(this));
+    }
   }
 
   startWebcam(): void {
@@ -70,12 +77,19 @@ export class MockInterviewPageComponent implements OnInit {
       this.videoStream.getTracks().forEach((track) => track.stop());
     }
 
-    document.removeEventListener('visibilitychange', this.handleTabSwitch);
+    if (typeof document != 'undefined') {
+      document.removeEventListener('visibilitychange', this.handleTabSwitch.bind(this));
+    }
   }
 
   handleTabSwitch() {
     if (document.hidden) {
-      alert('Interview Ended!!');
+      this._terminate.terminate(this._intId).subscribe({
+        next: (res) => {
+          this._toast.success(res.msg);
+          this._router.navigateByUrl('/home');
+        },
+      });
     }
   }
 
