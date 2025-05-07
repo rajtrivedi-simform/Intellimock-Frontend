@@ -1,0 +1,27 @@
+<app-header></app-header>
+<div class="form-container">
+  <form [formGroup]="codeInterviewData" class="form-content" (ngSubmit)="onSubmit()">
+    <h1>Select <span>Interview Preferences</span></h1>
+    <div class="form-group">
+      <label for="language">Language:</label>
+      <select id="language" formControlName="language">
+        <option value="">-- Select --</option>
+        @for (language of programmingLanguages; track $index) {
+          <option value="{{ language }}">{{ language }}</option>
+        }
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="experience">Experience Level:</label>
+      <input
+        type="number"
+        id="experience"
+        min="0"
+        formControlName="experience"
+        placeholder="Enter your experience level (e.g., Junior, Mid, Senior or number of years)"
+      />
+    </div>
+
+    <button>Start Interview</button>
+  </form>
+</div>

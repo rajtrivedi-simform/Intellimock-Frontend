@@ -4,7 +4,8 @@
     @for (type of typeOptions; track $index) {
       <button
         (click)="filterQuestions(type); changeType(type)"
-        [class.selected]="_selectedType === type">
+        [class.selected]="_selectedType === type"
+      >
         {{ type }}
       </button>
     }
@@ -18,7 +19,7 @@
             <h3>{{ question.question }}</h3>
             <div class="question-details">
               <span class="level">Level: {{ question.level }}</span>
-              <span class="type">Type: {{ question.type }}</span>
+              <!-- <span class="type">Type: {{ question.type }}</span> -->
             </div>
           </div>
         </div>

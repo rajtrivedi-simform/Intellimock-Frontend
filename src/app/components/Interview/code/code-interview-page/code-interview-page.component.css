@@ -1,0 +1,14 @@
+.leetcode-page {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  padding: 10rem 5%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);
+}
+
+@media (max-width: 1024px) {
+  .leetcode-page {
+    grid-template-columns: 1fr;
+  }
+}
