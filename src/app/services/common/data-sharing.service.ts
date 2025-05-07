@@ -7,7 +7,10 @@ import { codingQuestionObj, feedbackObj } from '../../constants/types';
 })
 export class DataSharingService {
   _subject = new BehaviorSubject<T>([]);
-  _feedbackSubject = new BehaviorSubject<Array<feedbackObj>>([]);
+  _feedbackSubject = new BehaviorSubject<feedbackObj>({
+    feedback: [],
+    selection_probablity: 0,
+  });
   _codeQuestionSubject = new BehaviorSubject<codingQuestionObj>({
     title: '',
     difficulty: '',
@@ -26,7 +29,7 @@ export class DataSharingService {
     this._subject.next(data);
   }
 
-  onChangeObj(data: Array<feedbackObj>) {
+  onChangeObj(data: feedbackObj) {
     this._feedbackSubject.next(data);
   }
 

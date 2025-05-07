@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-terminate',
   imports: [],
   templateUrl: './terminate.component.html',
-  styleUrl: './terminate.component.css'
+  styleUrl: './terminate.component.css',
 })
-export class TerminateComponent {
-
-}
+export class TerminateComponent {}

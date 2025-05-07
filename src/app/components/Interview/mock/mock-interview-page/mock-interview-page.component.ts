@@ -87,7 +87,8 @@ export class MockInterviewPageComponent implements OnInit {
       this._terminate.terminate(this._intId).subscribe({
         next: (res) => {
           this._toast.success(res.msg);
-          this._router.navigateByUrl('/home');
+          this.ngOnDestroy();
+          this._router.navigateByUrl('/');
         },
       });
     }

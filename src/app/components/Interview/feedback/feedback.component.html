@@ -2,12 +2,13 @@
 <div class="feedback-container">
   <div class="intro">
     <h1>Mock Interview Feedback</h1>
+    <p>Probability of Selection is: {{ feedBack.selection_probablity }}%</p>
     <p>
       Review your answers and feedback for each question below. Click on a card to see full details.
     </p>
   </div>
   <div class="cards">
-    @for (obj of feedBack; track $index) {
+    @for (obj of feedBack.feedback; track $index) {
       <div class="card" (click)="openModal(obj)">
         <div class="question">
           <span>Question {{ $index + 1 }}:</span>

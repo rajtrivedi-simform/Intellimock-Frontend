@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DataSharingService } from '../../../services/common/data-sharing.service';
-import { feedbackObj, QuesAnswerObj } from '../../../constants/types';
+import { apiResponse, feedbackObj } from '../../../constants/types';
 import { InterviewService } from '../../../services/interviews/interview.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../common/header/header.component';
@@ -13,15 +13,15 @@ import { RouterLink } from '@angular/router';
   styleUrl: './feedback.component.css',
 })
 export class FeedbackComponent {
-  feedBack: Array<feedbackObj> = [];
-  constructor(
-    private _dataShare: DataSharingService,
-    private _feedbackService: InterviewService
-  ) {}
+  feedBack: feedbackObj = {
+    feedback: [],
+    selection_probablity: 0,
+  };
+  constructor(private _dataShare: DataSharingService) {}
 
   ngOnInit() {
     this._dataShare._feedbackSubject.subscribe({
-      next: (data: Array<feedbackObj>) => {
+      next: (data: feedbackObj) => {
         this.feedBack = data;
       },
     });

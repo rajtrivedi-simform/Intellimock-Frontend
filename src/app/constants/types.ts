@@ -89,15 +89,19 @@ export interface codingQuestionObj {
   expected_skills: string[];
 }
 
-export interface feedbackObj {
+export interface feedBackArr {
   question: string;
   answer: string;
   feedback: string;
+}
+export interface feedbackObj {
+  feedback: Array<feedBackArr>;
+  selection_probablity: number;
 }
 
 export interface feedbackAPIResponse {
   success: boolean;
   status: number;
   message: string;
-  data: Array<feedbackObj>;
+  data: feedbackObj;
 }
