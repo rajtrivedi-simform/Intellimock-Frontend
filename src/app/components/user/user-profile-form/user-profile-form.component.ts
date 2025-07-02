@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-user-profile-form',
   imports: [CommonModule, FormsModule],
   templateUrl: './user-profile-form.component.html',
-  styleUrl: './user-profile-form.component.css'
+  styleUrl: './user-profile-form.component.css',
 })
 export class UserProfileFormComponent {
   experience: number = 0;
@@ -14,7 +14,7 @@ export class UserProfileFormComponent {
   resumeFile: File | null = null;
 
   onResumeUpload(event: any) {
-    this.resumeFile = event.target.files[0];
+    this.resumeFile = event.target!.files[0];
   }
 
   extractSkillsFromResume() {

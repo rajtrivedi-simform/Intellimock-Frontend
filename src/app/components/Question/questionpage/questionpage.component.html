@@ -4,7 +4,8 @@
     @for (type of typeOptions; track $index) {
       <button
         (click)="filterQuestions(type); changeType(type)"
-        [class.selected]="_selectedType === type">
+        [class.selected]="_selectedType === type"
+      >
         {{ type }}
       </button>
     }

@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { apiResponse } from '../../constants/types';
 import { Observable } from 'rxjs';
+import { userProfileResponse } from '../../constants/types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class UserService {
   constructor(private _http: HttpClient) {}
 
-  isLoginCheck(): Observable<apiResponse> {
-    return this._http.get<apiResponse>(`${environment.apiURLAuth}auth/status`, {
+  getUserDetails(): Observable<userProfileResponse> {
+    return this._http.get<userProfileResponse>(environment.apiURLUser, {
       withCredentials: true,
     });
   }

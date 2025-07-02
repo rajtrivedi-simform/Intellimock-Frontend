@@ -38,11 +38,21 @@ export const routes: Routes = [
       import('./components/Question/page/page.component').then((pa) => pa.PageComponent),
   },
   {
-    path: 'user-profile',
-    loadComponent: () => import('./components/user/user-profile/user-profile.component').then((up)=> up.UserProfileComponent)
+    path: 'profile',
+    loadComponent: () =>
+      import('./components/user/user-profile/user-profile.component').then(
+        (up) => up.UserProfileComponent
+      ),
   },
   {
     path: 'user-register',
-    loadComponent: () => import('./components/user/user-profile-form/user-profile-form.component').then((upf)=> upf.UserProfileFormComponent)
-  }
+    loadComponent: () =>
+      import('./components/user/user-profile-form/user-profile-form.component').then(
+        (upf) => upf.UserProfileFormComponent
+      ),
+  },
+  // {
+  //   path: 'feedback/:id',
+  //   component: 
+  // },
 ];

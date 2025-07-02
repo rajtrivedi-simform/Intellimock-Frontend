@@ -106,7 +106,7 @@ h2 {
   margin-bottom: 1rem;
 }
 
-.question-details{
+.question-details {
   display: flex;
   justify-content: space-between;
 }
@@ -117,7 +117,9 @@ h2 {
   border-radius: 0.5rem;
   text-align: left;
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   cursor: pointer;
 }
 
