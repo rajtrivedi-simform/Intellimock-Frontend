@@ -1,17 +1,24 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/common/auth.service';
+import { map, catchError, of } from 'rxjs';
 
 export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
-  authService.isLoginCheck().subscribe((res: boolean) => {
-    if (res) {
-      return true;
-    } else {
-      router.navigateByUrl('/login');
-      return false;
-    }
-  });
-  return false; // Default Fallback Value
+
+  return authService.isLoginCheck().pipe(
+    map((isLoggedIn) => {
+      if (isLoggedIn) {
+        return true;
+      } else {
+        router.navigate(['/login']);
+        return false;
+      }
+    }),
+    catchError(() => {
+      router.navigate(['/login']);
+      return of(false);
+    })
+  );
 };
