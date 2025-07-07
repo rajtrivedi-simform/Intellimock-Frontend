@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { UserProfileFormComponent } from './components/user/user-profile-form/user-profile-form.component';
 
 export const routes: Routes = [
   {
@@ -53,6 +54,10 @@ export const routes: Routes = [
   },
   // {
   //   path: 'feedback/:id',
-  //   component: 
+  //   component:
   // },
+  {
+    path: 'form',
+    component: UserProfileFormComponent,
+  },
 ];

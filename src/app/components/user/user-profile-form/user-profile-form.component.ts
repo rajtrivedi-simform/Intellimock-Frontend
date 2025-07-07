@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ResumeUploaderService } from '../../../services/User/resume.service';
 
 @Component({
   selector: 'app-user-profile-form',
@@ -12,9 +13,24 @@ export class UserProfileFormComponent {
   experience: number = 0;
   skills: string = '';
   resumeFile: File | null = null;
+  data: any = {};
 
-  onResumeUpload(event: any) {
-    this.resumeFile = event.target!.files[0];
+  constructor(private _resumeService: ResumeUploaderService) {}
+
+  onResumeUpload(event: Event) {
+    const inpElement = event.target as HTMLInputElement;
+    if (inpElement.files) {
+      console.log(inpElement.files[0]);
+      this.resumeFile = inpElement.files[0];
+
+      const payload = new FormData();
+      payload.append('resumeFile', this.resumeFile);
+
+      this._resumeService.uploadResume(payload).subscribe({
+        next: (res) => (this.data = res.data),
+        error: (err) => console.log(err),
+      });
+    }
   }
 
   extractSkillsFromResume() {
@@ -31,7 +47,7 @@ export class UserProfileFormComponent {
   }
 
   submitForm() {
-    if (!this.resumeFile || !this.experience || !this.skills) {
+    if (!this.resumeFile || !this.experience) {
       alert('Please fill in all required fields.');
       return;
     }
