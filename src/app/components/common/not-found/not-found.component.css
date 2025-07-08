@@ -1,0 +1,124 @@
+.glitch-wrapper {
+  height: 100vh;
+  background-color: #0f172a;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+  color: #ffffff;
+}
+
+.glitch {
+  font-size: 8rem;
+  font-weight: bold;
+  position: relative;
+  color: #fff;
+  letter-spacing: 4px;
+  animation: flicker 2s infinite;
+
+  &::before,
+  &::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    color: #9333ea;
+    background: transparent;
+    overflow: hidden;
+  }
+
+  &::before {
+    top: -2px;
+    text-shadow: -2px 0 red;
+    animation: glitchTop 1s infinite linear alternate-reverse;
+  }
+
+  &::after {
+    top: 2px;
+    text-shadow: -2px 0 cyan;
+    animation: glitchBottom 1s infinite linear alternate-reverse;
+  }
+}
+
+.subtitle {
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  color: #94a3b8;
+}
+
+.btn {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(to right, #9333ea, #a855f7);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(to right, #7e22ce, #9333ea);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes glitchTop {
+  0% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+  5% {
+    clip: rect(0, 9999px, 10px, 0);
+  }
+  10% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+  15% {
+    clip: rect(10px, 9999px, 20px, 0);
+  }
+  20%,
+  100% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+}
+
+@keyframes glitchBottom {
+  0% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+  5% {
+    clip: rect(20px, 9999px, 30px, 0);
+  }
+  10% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+  15% {
+    clip: rect(25px, 9999px, 40px, 0);
+  }
+  20%,
+  100% {
+    clip: rect(0, 9999px, 0, 0);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+  }
+
+  20%,
+  24%,
+  55% {
+    opacity: 0.4;
+  }
+}

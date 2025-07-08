@@ -36,7 +36,6 @@ export class UserProfileComponent {
         this.user = res.data.user;
         this.mockInterviews = res.data.mockInterviewData;
         this.codeInterviews = res.data.codeInterviewData;
-        console.log(res.data);
       },
       error: () => {
         console.log('error');

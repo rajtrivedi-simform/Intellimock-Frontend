@@ -112,6 +112,9 @@ export class LoginComponent implements OnInit {
         };
         this.userLogin.userLogin(data).subscribe({
           next: () => {
+            if (typeof window !== 'undefined') {
+              localStorage.setItem('isLogin', 'true');
+            }
             this.toast.success('Login');
             this.router.navigateByUrl('');
           },
