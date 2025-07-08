@@ -30,19 +30,13 @@ export class HeaderComponent {
       }
     });
 
-    this.authCheck.isLoginCheck().subscribe({
-      next: (res: any) => {
-        this.isLogin.set(res.status === 200);
-        if (typeof window != 'undefined') {
+    this.authCheck.isLoginCheck().subscribe((res) => {
+      if (res) {
+        this.isLogin.set(true);
+        if (typeof window !== 'undefined') {
           localStorage.setItem('isLogin', 'true');
         }
-      },
-      error: (err) => {
-        this.isLogin.set(false);
-        if (typeof window != 'undefined') {
-          localStorage.removeItem('isLogin');
-        }
-      },
+      }
     });
   }
 }

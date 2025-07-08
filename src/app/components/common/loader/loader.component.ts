@@ -14,7 +14,6 @@ export class LoaderComponent {
   constructor(private loaderService: LoaderService) {
     // Subscribe to the loader's visibility state
     this.loaderService.isLoading$.subscribe((status) => {
-      console.log('Loader status:', status);
       this.isLoading = status;
       // When loader is hidden, reset progress
     });
