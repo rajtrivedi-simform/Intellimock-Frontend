@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { apiResponse } from '../../constants/types';
+import { resumeAPIResponse } from '../../constants/types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class ResumeUploaderService {
   constructor(private _http: HttpClient) {}
 
-  uploadResume(payload: FormData): Observable<apiResponse> {
-    return this._http.post<apiResponse>(`${environment.apiURLUser}resume/`, payload, {
+  uploadResume(payload: FormData): Observable<resumeAPIResponse> {
+    return this._http.post<resumeAPIResponse>(`${environment.apiURLUser}resume/`, payload, {
       withCredentials: true,
     });
   }

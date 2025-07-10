@@ -1,11 +1,3 @@
-:host {
-  display: block;
-  padding: 3rem 2rem;
-  background: #0a0f1e;
-  min-height: 100vh;
-  color: white;
-}
-
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -16,6 +8,7 @@
   color: white;
   overflow: hidden;
   position: relative;
+  gap: 2rem;
 }
 
 .profile-container::before {
@@ -31,29 +24,25 @@
   animation: moveDots 10s linear infinite;
 }
 
-@keyframes moveDots {
-  0% { background-position: 0 0; }
-  100% { background-position: 100px 100px; }
-}
-
-.profile-card {
+.profile-card, .skills-container, .history-container {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 2rem;
   border-radius: 1.25rem;
   width: 100%;
   max-width: 800px;
-  margin-bottom: 2rem;
   z-index: 1;
+}
+
+.profile-card {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  animation: fadeIn 0.6s ease-out;
 }
 
 .avatar {
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   background: linear-gradient(to right, #9333ea, #a855f7);
   border-radius: 50%;
   display: flex;
@@ -62,21 +51,20 @@
 }
 
 .avatar span {
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   font-weight: 600;
   color: white;
 }
 
 .info h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: white;
 }
 
 .info p {
   color: #b3b3b3;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .edit-btn {
@@ -92,30 +80,43 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-decoration: none;
+  margin: 0 1rem;
 }
 
 .edit-btn:hover {
-  background: linear-gradient(to right, #7e22ce, #9333ea);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
 }
 
 .edit-btn i {
   font-size: 1.2rem;
 }
 
-.history-container {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 1.25rem;
-  width: 100%;
-  max-width: 800px;
-  z-index: 1;
-  animation: fadeIn 0.6s ease-out;
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.skill {
+  background: rgba(168, 85, 247, 0.2);
+  color: #a855f7;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+  transition: all 0.3s ease;
+}
+
+.skill:hover {
+  background: rgba(168, 85, 247, 0.3);
+  transform: translateY(-2px);
 }
 
 .history-container h3 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
   color: white;
@@ -144,32 +145,16 @@
   transform: scale(1.05);
 }
 
-.tabs button:hover:not(.active) {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .interview-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.5rem;
-  padding: 0.5rem;
 }
 
 .interview-card {
   background: rgba(255, 255, 255, 0.1);
   padding: 1.5rem;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -178,14 +163,14 @@
 .interview-card:hover {
   transform: translateY(-4px);
   background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);
   border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.2);
 }
 
 .interview-card h4 {
-  color: white;
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
+  color: white;
 }
 
 .interview-card p {
@@ -193,10 +178,19 @@
   font-size: 0.9rem;
 }
 
-.profile-info {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+.no-interviews {
+  text-align: center;
+  color: #b3b3b3;
+  font-size: 1.1rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  border: 1px dashed rgba(168, 85, 247, 0.3);
+}
+
+@keyframes moveDots {
+  0% { background-position: 0 0; }
+  100% { background-position: 100px 100px; }
 }
 
 @media (max-width: 768px) {
@@ -204,7 +198,7 @@
     padding: 6rem 1rem;
   }
 
-  .profile-card, .history-container {
+  .profile-card, .skills-container, .history-container {
     padding: 1.5rem;
   }
 
@@ -213,25 +207,35 @@
   }
 
   .avatar {
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
   }
 
   .avatar span {
+    font-size: 1.8rem;
+  }
+
+  .info h2 {
     font-size: 1.4rem;
   }
 
   .tabs {
     flex-direction: column;
-    gap: 0.5rem;
+  }
+
+  .interview-list {
+    grid-template-columns: 1fr;
   }
 
   .edit-btn {
     padding: 0.6rem 1rem;
     font-size: 0.9rem;
   }
+}
 
-  .interview-list {
-    grid-template-columns: 1fr;
-  }
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
 }

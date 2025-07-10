@@ -14,8 +14,13 @@
       <i class="bi bi-pencil-square"></i>
       Edit Profile
     </button>
+    <a class="edit-btn" href="{{ resumeUrl }}" target="_blank">Resume</a>
   </div>
-
+  <div class="skills-container">
+    @for (skill of skills; track $index) {
+      <div class="skill">{{ skill }}</div>
+    }
+  </div>
   <div class="history-container">
     <h3>Interview History</h3>
     <div class="tabs">
@@ -28,23 +33,31 @@
     </div>
 
     @if (activeTab === 'mock') {
-      <div class="interview-list">
-        @for (interview of mockInterviews; track $index) {
-          <div class="interview-card" routerLink="/feedback/{{ interview.mockIntId }}">
-            <h4>{{ interview.Timestamp | date: 'mediumDate' }}</h4>
-            <p>{{ interview.interviewType }}</p>
-          </div>
-        }
-      </div>
+      @if (mockInterviews.length > 0) {
+        <div class="interview-list">
+          @for (interview of mockInterviews; track $index) {
+            <div class="interview-card" routerLink="/feedback/{{ interview.mockIntId }}">
+              <h4>{{ interview.Timestamp | date: 'mediumDate' }}</h4>
+              <p>{{ interview.interviewType }}</p>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="no-interviews">No interviews found.</p>
+      }
     } @else if (activeTab === 'code') {
-      <div class="interview-list">
-        @for (interview of codeInterviews; track $index) {
-          <div class="interview-card" routerLink="/feedback/{{ interview.codeIntId }}">
-            <h4>{{ interview.Timestamp | date: 'mediumDate' }}</h4>
-            <p>{{ interview.language }} && {{ interview.level }} year of experience</p>
-          </div>
-        }
-      </div>
+      @if (codeInterviews.length > 0) {
+        <div class="interview-list">
+          @for (interview of codeInterviews; track $index) {
+            <div class="interview-card" routerLink="/feedback/{{ interview.codeIntId }}">
+              <h4>{{ interview.Timestamp | date: 'mediumDate' }}</h4>
+              <p>{{ interview.language }} && {{ interview.level }} year of experience</p>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="no-interviews">No interviews found.</p>
+      }
     }
   </div>
 </div>

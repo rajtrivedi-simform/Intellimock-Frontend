@@ -5,6 +5,8 @@ import { ResumeUploaderService } from '../../../services/User/resume.service';
 import { HeaderComponent } from '../../common/header/header.component';
 import { UserProfileService } from '../../../services/User/user-profile.service';
 import { userProfilePayload } from '../../../constants/types';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-profile-form',
@@ -21,7 +23,9 @@ export class UserProfileFormComponent {
 
   constructor(
     private _resumeService: ResumeUploaderService,
-    private _userProfileService: UserProfileService
+    private _userProfileService: UserProfileService,
+    private _router: Router,
+    private _toast: ToastrService
   ) {}
 
   onResumeUpload(event: Event) {
@@ -34,7 +38,7 @@ export class UserProfileFormComponent {
       payload.append('resumeFile', this.resumeFile);
 
       this._resumeService.uploadResume(payload).subscribe({
-        next: (res: any) => {
+        next: (res) => {
           this.data = res.data.tokens;
           this.cloudURL = res.data.cloudURL;
         },
@@ -59,7 +63,12 @@ export class UserProfileFormComponent {
       skills: this.data,
     };
     this._userProfileService.postUserProfile(payload).subscribe({
-      next: (res) => console.log(res),
+      next: (res) => {
+        if (res.success) {
+          this._toast.success('Profile Saved Successfully');
+          this._router.navigate(['/profile']);
+        }
+      },
       error: (err) => console.error(err),
     });
   }

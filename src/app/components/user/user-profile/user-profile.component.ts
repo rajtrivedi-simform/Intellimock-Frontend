@@ -27,8 +27,9 @@ export class UserProfileComponent {
   activeTab: 'mock' | 'code' = 'mock';
 
   mockInterviews: mockInterviewData[] = [];
-
   codeInterviews: codeInterviewData[] = [];
+  skills: string[] = [];
+  resumeUrl: string = '';
 
   ngOnInit() {
     this._userService.getUserDetails().subscribe({
@@ -36,6 +37,8 @@ export class UserProfileComponent {
         this.user = res.data.user;
         this.mockInterviews = res.data.mockInterviewData;
         this.codeInterviews = res.data.codeInterviewData;
+        this.resumeUrl = res.data.resume.resumeCloudUrl;
+        this.skills = res.data.resume.skills;
       },
       error: () => {
         console.log('error');

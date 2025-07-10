@@ -50,6 +50,7 @@ export interface userProfileResponse extends apiResponse {
     user: userObject;
     mockInterviewData: Array<mockInterviewData>;
     codeInterviewData: Array<codeInterviewData>;
+    resume: resumeData;
   };
 }
 
@@ -71,6 +72,15 @@ export interface codeInterviewData {
   level: string;
   language: string;
   Timestamp: string;
+}
+
+export interface resumeData {
+  resumeId: string;
+  userId: string;
+  resumeCloudUrl: string;
+  skills: Array<string>;
+  experience: number;
+  Timestamp: Date;
 }
 export interface mockInterviewObj {
   mockInterviewId: string;
@@ -144,4 +154,11 @@ export interface userProfilePayload {
   cloudURL: string;
   experience: number;
   skills: string[];
+}
+
+export interface resumeAPIResponse extends apiResponse {
+  data: {
+    tokens: string[];
+    cloudURL: string;
+  };
 }
