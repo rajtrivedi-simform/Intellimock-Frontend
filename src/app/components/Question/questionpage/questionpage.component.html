@@ -4,12 +4,15 @@
     @for (type of typeOptions; track $index) {
       <button
         (click)="filterQuestions(type); changeType(type)"
-        [class.selected]="_selectedType === type">
+        [class.selected]="_selectedType === type"
+      >
         {{ type }}
       </button>
     }
   </div>
-
+  <div class="question-search">
+    <input type="search" class="search" name="" id="" />
+  </div>
   <div class="question-sections">
     <div class="question-section">
       @for (question of filteredQuestions; track $index) {

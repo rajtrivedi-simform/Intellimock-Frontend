@@ -35,9 +35,8 @@ export class HeaderComponent {
       }
     });
 
-
     this._authCheck.isLoginCheck().subscribe({
-      next: (res: any) => {
+      next: (res) => {
         this.isLogin.set(res.status === 200);
         if (typeof window != 'undefined' && typeof localStorage != 'undefined') {
           localStorage.setItem('isLogin', 'true');
@@ -48,21 +47,22 @@ export class HeaderComponent {
         if (typeof window != 'undefined' && typeof localStorage != 'undefined') {
           localStorage.setItem('isLogin', 'false');
         }
+      },
     });
   }
 
   logout() {
     this._logout.logout().subscribe({
-      next: (res) => {
+      next: () => {
         this._toast.clear();
         this._toast.success('Logout Success');
         setTimeout(() => {
-          this._router.navigateByUrl('/dummy', { skipLocationChange: true }).then(() => {
-            this._router.navigate(['/']);
+          this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this._router.navigate(['/login']);
           });
-        }, 500);
+        }, 0);
       },
-      error: (err) => {
+      error: () => {
         this._toast.error('Error Logging Out');
       },
     });
