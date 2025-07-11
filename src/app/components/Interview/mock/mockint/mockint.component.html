@@ -16,10 +16,9 @@
       <label for="language">Select Language:</label>
       <select id="language" formControlName="language">
         <option value="">-- Select --</option>
-        <option value="python">Python</option>
-        <option value="javascript">JavaScript</option>
-        <option value="java">Java</option>
-        <option value="c++">C++</option>
+        @for (skill of skills; track $index) {
+          <option value="{{ skill }}">{{ skill }}</option>
+        }
       </select>
     </div>
 

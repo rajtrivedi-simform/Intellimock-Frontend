@@ -105,3 +105,9 @@ export interface feedbackAPIResponse {
   message: string;
   data: feedbackObj;
 }
+
+export interface skillsAPIResponse extends apiResponse {
+  data: {
+    skills: Array<string>;
+  };
+}
