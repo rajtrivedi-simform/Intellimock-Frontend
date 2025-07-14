@@ -12,12 +12,12 @@
         <li routerLink="/questions">Questions</li>
         <li routerLink="/interviews">Interviews</li>
         <li routerLink="/profile"><i class="bi bi-person-circle"></i></li>
-        <li (click)="logout()">Logout</li>
+        <!-- <li (click)="logout()">Logout</li> -->
       </ng-container>
       <ng-template #guestMenu>
-        <li><button class="signin" routerLink="login">Log In</button></li>
+        <li><button class="signin" routerLink="/login">Log In</button></li>
         <li>
-          <button class="getstarted" routerLink="register">Sign Up</button>
+          <button class="getstarted" routerLink="/register">Sign Up</button>
         </li>
       </ng-template>
     </ul>

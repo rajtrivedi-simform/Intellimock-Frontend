@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, Signal, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -9,7 +9,8 @@ import { RouterLink } from '@angular/router';
 })
 export class InterviewPrepComponent {
   isLogin = signal(false);
-  constructor() {
+
+  ngOnInit() {
     if (typeof window != 'undefined') {
       this.isLogin.set(localStorage.getItem('isLogin') === 'true');
     }

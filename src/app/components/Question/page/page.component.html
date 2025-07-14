@@ -9,9 +9,25 @@
   <div class="comments-container">
     <h1>Comments</h1>
     <div class="add-comment-container">
-      <textarea name="newComment" class="add-comment-textarea"></textarea>
-      <button class="add-comment-btn">Add Comment</button>
+      <textarea
+        name="newComment"
+        class="add-comment-textarea"
+        [(ngModel)]="newComment"
+        placeholder="Add your comment here..."
+      ></textarea>
+      <button class="add-comment-btn" (click)="addComment()">Add Comment</button>
     </div>
-    <div class="comment-list"></div>
+    <div class="comment-list">
+      <div class="comment-item" *ngFor="let comment of comments">
+        <div class="comment-header">
+          <i class="bi bi-person-circle"></i>
+          <span class="comment-author">{{ comment.author }}</span>
+          <span class="comment-time">{{ comment.timestamp | date: 'medium' }}</span>
+        </div>
+        <div class="comment-content">
+          {{ comment.content }}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
