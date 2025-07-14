@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import path from 'path';
+import { UserProfileFormComponent } from './components/user/user-profile-form/user-profile-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { authGuard } from './Guards/auth.guard';
 
@@ -8,7 +8,6 @@ export const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: HomeComponent,
-    canActivate: [authGuard],
   },
   {
     path: 'questions',
@@ -91,6 +90,28 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'question/:id',
+    loadComponent: () =>
+      import('./components/Question/page/page.component').then((pa) => pa.PageComponent),
+  },
+  {
+    path: 'profile',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./components/user/user-profile/user-profile.component').then(
+        (up) => up.UserProfileComponent
+      ),
+  },
+  // {
+  //   path: 'feedback/:id',
+  //   component:
+  // },
+  {
+    path: 'form',
+    component: UserProfileFormComponent,
+    canActivate: [authGuard],
+  },
+  {
     path: 'questions',
     loadComponent: () =>
       import('./components/Question/questionpage/questionpage.component').then(
@@ -104,6 +125,7 @@ export const routes: Routes = [
       import('./components/Question/page/page.component').then((pa) => pa.PageComponent),
     canActivate: [authGuard],
   },
+  {
     path: '**',
     loadComponent: () =>
       import('./components/common/not-found/not-found.component').then(

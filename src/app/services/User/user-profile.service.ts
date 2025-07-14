@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
+import { apiResponse, userProfilePayload } from '../../constants/types';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,14 @@ export class UserProfileService {
     const url = `${environment.apiURLUser}profile/`;
 
     return this._http.get(url, {
+      withCredentials: true,
+    });
+  }
+
+  postUserProfile(payload: userProfilePayload): Observable<apiResponse> {
+    const url = `${environment.apiURLUser}profile/`;
+
+    return this._http.post<apiResponse>(url, payload, {
       withCredentials: true,
     });
   }

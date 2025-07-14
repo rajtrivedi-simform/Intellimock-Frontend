@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { catchError, map, Observable, of } from 'rxjs';
 import { apiResponse } from '../../constants/types';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +17,15 @@ export class AuthService {
       })
       .pipe(
         map((res) => {
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('isLogin', 'true');
+          }
           return res.success;
         }),
-        catchError((err) => {
+        catchError(() => {
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('isLogin', 'false');
+          }
           return of(false);
         })
       );
