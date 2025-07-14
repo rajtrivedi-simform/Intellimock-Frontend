@@ -45,6 +45,33 @@ export interface apiResponse {
   data?: object | null;
 }
 
+export interface userProfileResponse extends apiResponse {
+  data: {
+    user: userObject;
+    mockInterviewData: Array<mockInterviewData>;
+    codeInterviewData: Array<codeInterviewData>;
+  };
+}
+
+export interface userObject {
+  userId: string;
+  userFullName: string;
+  userEmail: string;
+  resumeData: string[];
+}
+export interface mockInterviewData {
+  Timestamp: string;
+  interviewType: string;
+  level: string;
+  mockIntId: string;
+}
+
+export interface codeInterviewData {
+  codeIntId: string;
+  level: string;
+  language: string;
+  Timestamp: string;
+}
 export interface mockInterviewObj {
   mockInterviewId: string;
   interviewType: string;

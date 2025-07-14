@@ -91,6 +91,19 @@ export const routes: Routes = [
     },
   },
   {
+    path: 'questions',
+    loadComponent: () =>
+      import('./components/Question/questionpage/questionpage.component').then(
+        (que) => que.QuestionpageComponent
+      ),
+      canActivate: [authGuard],
+  },
+  {
+    path: 'question/:id',
+    loadComponent: () =>
+      import('./components/Question/page/page.component').then((pa) => pa.PageComponent),
+    canActivate: [authGuard],
+  },
     path: '**',
     loadComponent: () =>
       import('./components/common/not-found/not-found.component').then(

@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './interview-prep.component.css',
 })
 export class InterviewPrepComponent {
-  isLogin = signal<boolean>(false);
+  isLogin = signal(false);
 
   ngOnInit() {
     if (typeof window != 'undefined') {

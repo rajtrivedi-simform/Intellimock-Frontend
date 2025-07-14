@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Signal, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/common/auth.service';
 
@@ -29,14 +29,36 @@ export class HeaderComponent {
         this.hidden = true;
       }
     });
-
-    this.authCheck.isLoginCheck().subscribe((res) => {
-      if (res) {
-        this.isLogin.set(true);
-        if (typeof window !== 'undefined') {
+    this._authCheck.isLoginCheck().subscribe({
+      next: (res) => {
+        this.isLogin.set(res.status === 200);
+        if (typeof window != 'undefined' && typeof localStorage != 'undefined') {
           localStorage.setItem('isLogin', 'true');
         }
-      }
+      },
+      error: () => {
+        this.isLogin.set(false);
+        if (typeof window != 'undefined' && typeof localStorage != 'undefined') {
+          localStorage.setItem('isLogin', 'false');
+        }
+      },
+    });
+  }
+
+  logout() {
+    this._logout.logout().subscribe({
+      next: () => {
+        this._toast.clear();
+        this._toast.success('Logout Success');
+        setTimeout(() => {
+          this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this._router.navigate(['/login']);
+          });
+        }, 0);
+      },
+      error: () => {
+        this._toast.error('Error Logging Out');
+      },
     });
   }
 }
