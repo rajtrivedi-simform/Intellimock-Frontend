@@ -29,6 +29,7 @@ export interface Question {
   type: string;
   skill: string;
   level: string;
+  userId: string;
 }
 
 export interface questionAPIResponse {
@@ -167,4 +168,19 @@ export interface skillsAPIResponse extends apiResponse {
   data: {
     skills: string[];
   };
+}
+
+export interface questionPayload {
+  question: string;
+  type: 'Technical' | 'HR' | 'Coding';
+  skill: string;
+  level: 'Beginner (0-2 years)' | 'Intermediate (2-5 years)' | 'Advanced (5+ years)';
+}
+
+export interface profileResponse extends apiResponse {
+  data: {
+    resumeCloudUrl: string,
+    skills: string[],
+    experience: number,
+  }
 }

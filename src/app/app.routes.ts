@@ -10,10 +10,18 @@ export const routes: Routes = [
   },
   {
     path: 'questions',
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     loadComponent: () =>
       import('./components/Question/questionpage/questionpage.component').then(
         (que) => que.QuestionpageComponent
+      ),
+  },
+  {
+    path: 'myquestions',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./components/Question/my-questions/my-questions.component').then(
+        (myq) => myq.MyQuestionsComponent
       ),
   },
   {
@@ -96,16 +104,20 @@ export const routes: Routes = [
         (up) => up.UserProfileComponent
       ),
   },
-  // {
-  //   path: 'feedback/:id',
-  //   component:
-  // },
   {
     path: 'form',
     canActivate: [authGuard],
     loadComponent: () =>
       import('./components/user/user-profile-form/user-profile-form.component').then(
         (up) => up.UserProfileFormComponent
+      ),
+  },
+  {
+    path: 'questions/add',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./components/Question/add-question-form/add-question-form.component').then(
+        (aqf) => aqf.AddQuestionFormComponent
       ),
   },
   {

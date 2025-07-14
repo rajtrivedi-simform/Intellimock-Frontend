@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
-import { apiResponse, userProfilePayload } from '../../constants/types';
+import { apiResponse, profileResponse, userProfilePayload } from '../../constants/types';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,10 +10,10 @@ import { Observable } from 'rxjs';
 export class UserProfileService {
   constructor(private _http: HttpClient) {}
 
-  getUserProfile() {
+  getUserProfile(): Observable<profileResponse> {
     const url = `${environment.apiURLUser}profile/`;
 
-    return this._http.get(url, {
+    return this._http.get<profileResponse>(url, {
       withCredentials: true,
     });
   }

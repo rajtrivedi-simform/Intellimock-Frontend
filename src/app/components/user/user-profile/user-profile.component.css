@@ -24,7 +24,9 @@
   animation: moveDots 10s linear infinite;
 }
 
-.profile-card, .skills-container, .history-container {
+.profile-card,
+.skills-container,
+.history-container {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   padding: 2rem;
@@ -192,8 +194,12 @@
 }
 
 @keyframes moveDots {
-  0% { background-position: 0 0; }
-  100% { background-position: 100px 100px; }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -201,7 +207,9 @@
     padding: 6rem 1rem;
   }
 
-  .profile-card, .skills-container, .history-container {
+  .profile-card,
+  .skills-container,
+  .history-container {
     padding: 1.5rem;
   }
 

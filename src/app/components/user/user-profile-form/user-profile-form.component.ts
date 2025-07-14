@@ -28,6 +28,16 @@ export class UserProfileFormComponent {
     private _toast: ToastrService
   ) {}
 
+  ngOnInit() {
+    this._userProfileService.getUserProfile().subscribe({
+      next: res => {
+        this.data = res.data.skills;
+        this.cloudURL = res.data.resumeCloudUrl;
+        this.experience = res.data.experience;
+      }
+    })
+  }
+
   onResumeUpload(event: Event) {
     const inpElement = event.target as HTMLInputElement;
     if (inpElement.files) {
