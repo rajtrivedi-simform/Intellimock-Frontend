@@ -10,12 +10,32 @@
       </button>
     }
   </div>
+
   <div class="question-search">
-    <input type="search" class="search" name="" id="" />
+    <input
+      type="search"
+      class="search"
+      [formControl]="searchTerm"
+      placeholder="Search questions..."
+    />
   </div>
+
+  <div class="question-dropdown">
+    <label for="difficulty">Difficulty:</label>
+    <select
+      id="difficulty"
+      [(ngModel)]="_selectedDifficulty"
+      (change)="changeDifficulty(_selectedDifficulty)"
+    >
+      @for (level of difficultyOptions; track $index) {
+        <option [value]="level">{{ level }}</option>
+      }
+    </select>
+  </div>
+
   <div class="question-sections">
     <div class="question-section">
-      @for (question of filteredQuestions; track $index) {
+      @for (question of visibleQuestions; track $index) {
         <div class="question-cards">
           <div class="question-card" routerLink="/question/{{ question.questionId }}">
             <h3>{{ question.question }}</h3>
