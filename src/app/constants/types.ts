@@ -162,3 +162,9 @@ export interface resumeAPIResponse extends apiResponse {
     cloudURL: string;
   };
 }
+
+export interface skillsAPIResponse extends apiResponse {
+  data: {
+    skills: string[];
+  };
+}

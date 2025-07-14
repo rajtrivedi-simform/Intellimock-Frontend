@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { DataSharingService } from '../../../services/common/data-sharing.service';
-import { apiResponse, feedbackObj } from '../../../constants/types';
-import { InterviewService } from '../../../services/interviews/interview.service';
+import { feedbackObj } from '../../../constants/types';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../common/header/header.component';
 import { RouterLink } from '@angular/router';

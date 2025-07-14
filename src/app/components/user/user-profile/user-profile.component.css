@@ -99,7 +99,10 @@
   gap: 1rem;
   padding: 1.5rem;
 }
-
+.no-skill {
+  margin: auto;
+  color: rgba(255, 255, 255, 0.5);
+}
 .skill {
   background: rgba(168, 85, 247, 0.2);
   color: #a855f7;

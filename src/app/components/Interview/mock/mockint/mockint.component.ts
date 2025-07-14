@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { InterviewService } from '../../../../services/interviews/interview.service';
 import { mockInterviewObj } from '../../../../constants/types';
 import { DataSharingService } from '../../../../services/common/data-sharing.service';
+import { UserService } from '../../../../services/User/user.service';
 
 @Component({
   selector: 'app-mock-interview',
@@ -25,11 +26,14 @@ export class MockInterviewComponent {
     level: new FormControl('', [Validators.required]),
   });
 
+  userSkills: string[] = [];
+
   constructor(
     private _toast: ToastrService,
     private _interview: InterviewService,
     private _router: Router,
-    private _dataShare: DataSharingService
+    private _dataShare: DataSharingService,
+    private _userService: UserService
   ) {}
 
   get isMockTypeSelected(): boolean {
@@ -63,6 +67,11 @@ export class MockInterviewComponent {
   }
 
   ngOnInit() {
+    this._userService.getUserSkills().subscribe({
+      next: (res) => (this.userSkills = res.data.skills),
+      error: (err) => console.error(err),
+    });
+
     this.interviewData.get('experience')?.valueChanges.subscribe((value) => {
       let level = '';
       if (value === '0') {

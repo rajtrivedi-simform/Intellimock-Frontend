@@ -17,8 +17,12 @@
     <a class="edit-btn" href="{{ resumeUrl }}" target="_blank">Resume</a>
   </div>
   <div class="skills-container">
-    @for (skill of skills; track $index) {
-      <div class="skill">{{ skill }}</div>
+    @if (skills.length != 0) {
+      @for (skill of skills; track $index) {
+        <div class="skill">{{ skill }}</div>
+      }
+    } @else {
+      <div class="no-skill">---- No Skills Found ----</div>
     }
   </div>
   <div class="history-container">
