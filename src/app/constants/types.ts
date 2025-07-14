@@ -73,7 +73,6 @@ export interface codeInterviewData {
   language: string;
   Timestamp: string;
 }
-
 export interface resumeData {
   resumeId: string;
   userId: string;
@@ -82,6 +81,7 @@ export interface resumeData {
   experience: number;
   Timestamp: Date;
 }
+
 export interface mockInterviewObj {
   mockInterviewId: string;
   interviewType: string;

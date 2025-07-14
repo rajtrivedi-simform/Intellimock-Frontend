@@ -102,13 +102,6 @@ export const routes: Routes = [
         (up) => up.UserProfileComponent
       ),
   },
-  {
-    path: 'user-register',
-    loadComponent: () =>
-      import('./components/user/user-profile-form/user-profile-form.component').then(
-        (upf) => upf.UserProfileFormComponent
-      ),
-  },
   // {
   //   path: 'feedback/:id',
   //   component:
@@ -116,6 +109,21 @@ export const routes: Routes = [
   {
     path: 'form',
     component: UserProfileFormComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'questions',
+    loadComponent: () =>
+      import('./components/Question/questionpage/questionpage.component').then(
+        (que) => que.QuestionpageComponent
+      ),
+      canActivate: [authGuard],
+  },
+  {
+    path: 'question/:id',
+    loadComponent: () =>
+      import('./components/Question/page/page.component').then((pa) => pa.PageComponent),
+    canActivate: [authGuard],
   },
   {
     path: '**',
