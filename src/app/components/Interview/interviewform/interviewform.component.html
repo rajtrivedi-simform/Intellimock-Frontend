@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="interview-container">
+  <div class="interview-content">
+    <h1>Practice interviews with <span>AI</span> that feels real</h1>
+    <p>Choose between a mock interview or a coding interview to practice.</p>
+
+    <div class="options">
+      <div
+        class="option-card"
+        (click)="selectOption('mock')"
+        [class.selected]="selectedOption === 'mock'"
+      >
+        <i class="bi bi-clipboard-check icon"></i>
+        <h2>Mock Interview</h2>
+        <p>Practice behavioral questions and communication skills.</p>
+      </div>
+
+      <div
+        class="option-card"
+        (click)="selectOption('coding')"
+        [class.selected]="selectedOption === 'coding'"
+      >
+        <i class="bi bi-laptop icon"></i>
+        <h2>Coding Interview</h2>
+        <p>Solve real-world coding problems in a timed environment.</p>
+      </div>
+    </div>
+
+    <button
+      class="start-btn"
+      [disabled]="!selectedOption"
+      routerLink="{{ selectedOption === 'mock' ? 'Mock-Interview' : 'Coding-Interview' }}"
+    >
+      Start
+      {{ selectedOption === 'mock' ? 'Mock' : selectedOption === 'coding' ? 'Coding' : '' }}
+      Interview
+    </button>
+  </div>
+</div>

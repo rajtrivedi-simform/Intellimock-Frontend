@@ -1,0 +1,25 @@
+<header>
+  <div class="logo" routerLink="/">Intelli<span class="primary">Mock</span></div>
+
+  <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
+    <i class="bi bi-list"></i>
+  </button>
+
+  <nav [ngClass]="{ active: isMenuOpen }">
+    <ul class="nav-links" [ngClass]="{ hidden }">
+      <ng-container *ngIf="isLogin(); else guestMenu">
+        <li routerLink="/">Home</li>
+        <li routerLink="/questions">Questions</li>
+        <li routerLink="/interviews">Interviews</li>
+        <li routerLink="/profile"><i class="bi bi-person-circle"></i></li>
+        <li (click)="logout()">Logout</li>
+      </ng-container>
+      <ng-template #guestMenu>
+        <li><button class="signin" routerLink="/login">Log In</button></li>
+        <li>
+          <button class="getstarted" routerLink="/register">Sign Up</button>
+        </li>
+      </ng-template>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,28 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1>
+      Practice interviews <br />
+      with <span class="highlight">AI</span> that feels real
+    </h1>
+    <p>
+      IntelliMock uses advanced AI to simulate realistic job interviews, providing personalized
+      feedback and helping you land your dream job.
+    </p>
+    <div class="buttons">
+      @if (isLogin()) {
+        <button class="primary-btn" routerLink="interviews">Start Free Interview</button>
+      } @else {
+        <button class="primary-btn" routerLink="login">Start Free Interview</button>
+      }
+      <button class="secondary-btn" routerLink="about">Learn More</button>
+    </div>
+  </div>
+  <div class="interview-card">
+    <div class="card-content">
+      <h3>IntelliMock AI Interviewer</h3>
+      <p class="role">Technical Interview - Software Engineer</p>
+      <p class="question">Tell me about a challenging problem you've solved recently.</p>
+      <p class="start">Start answering...</p>
+    </div>
+  </div>
+</section>

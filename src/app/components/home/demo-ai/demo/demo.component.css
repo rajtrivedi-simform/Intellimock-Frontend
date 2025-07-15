@@ -1,0 +1,158 @@
+.ai-interview-container {
+  background: #111;
+  color: #fff;
+  border-radius: 16px;
+  text-align: left;
+  width: 90%;
+  max-width: 700px;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+/* Interview Header */
+.interview-header {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #111825;
+  align-items: center;
+  border-bottom: 1px solid #333;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  flex-wrap: wrap;
+}
+
+.interview-header .interviewer-info .title,
+.interview-header .interviewer-info .sub-title {
+  font-size: 0.85rem;
+}
+
+.interviewer-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: #1a1a37;
+  color: #6d28d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 10px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.icon-button {
+  background: none;
+  border: 1px solid #1f2937;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.icon-button:hover {
+  background-color: #1f2937;
+}
+
+.interview-body {
+  padding: 20px;
+  background-color: #030712;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.question-number {
+  font-weight: bold;
+}
+
+.question-text {
+  margin: 5px 0;
+}
+
+.answer-button {
+  background: #6d28d9;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 250px;
+  margin: 15px auto;
+  font-size: 16px;
+  transition: 0.3s;
+  display: block;
+  text-align: center;
+}
+
+.answer-button:hover {
+  background: #5b21b6;
+}
+
+@media (max-width: 768px) {
+  .ai-interview-container {
+    width: 95%;
+  }
+
+  .interview-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .actions {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .question {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .answer-button {
+    width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-interview-container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .interviewer-info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .avatar {
+    margin-bottom: 5px;
+  }
+
+  .answer-button {
+    width: 100%;
+  }
+}

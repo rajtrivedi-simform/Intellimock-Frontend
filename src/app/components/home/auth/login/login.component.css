@@ -1,0 +1,131 @@
+.main-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  overflow: hidden;
+  position: relative;
+}
+
+.main-container::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 2px, transparent 1px);
+  background-size: 20px 20px;
+  animation: moveDots 10s linear infinite;
+}
+
+@keyframes moveDots {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100px 100px;
+  }
+}
+
+.login {
+  width: 100%;
+  max-width: 480px;
+  padding: 3rem;
+  border-radius: 16px;
+  background: rgba(26, 26, 46, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+.login .form-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.login form .input {
+  width: 100%;
+  padding: 0.9rem;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background-color: #2d2d44;
+  color: white;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.emailError {
+  color: red;
+}
+
+.login form input:focus {
+  border-color: #6d28d9;
+  outline: none;
+  box-shadow: 0 0 10px rgba(109, 40, 217, 0.6);
+}
+
+.login form button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  border: none;
+  background: #6d28d9;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login form button:hover {
+  background: #5b21b6;
+}
+.option-text div {
+  margin: 1.5rem 0 0 0;
+  font-size: 1.3rem;
+}
+.option-text div span {
+  color: #6d28d9;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .login {
+    max-width: 90%;
+    padding: 2rem;
+  }
+
+  .login .form-title {
+    font-size: 2rem;
+  }
+
+  .login form input,
+  .login form button {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login {
+    max-width: 95%;
+    padding: 1.5rem;
+  }
+
+  .login .form-title {
+    font-size: 1.8rem;
+  }
+
+  .login form input,
+  .login form button {
+    font-size: 0.95rem;
+  }
+}

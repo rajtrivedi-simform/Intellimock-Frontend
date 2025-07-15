@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="questions-container">
+  <div class="language-buttons">
+    @for (type of typeOptions; track $index) {
+      <button
+        (click)="filterQuestions(type); changeType(type)"
+        [class.selected]="_selectedType === type"
+      >
+        {{ type }}
+      </button>
+    }
+  </div>
+
+  <div class="question-search">
+    <input
+      type="search"
+      class="search"
+      [formControl]="searchTerm"
+      placeholder="Search questions..."
+    />
+  </div>
+
+  <div class="question-dropdown">
+    <label for="difficulty">Difficulty:</label>
+    <select
+      id="difficulty"
+      [(ngModel)]="_selectedDifficulty"
+      (change)="changeDifficulty(_selectedDifficulty)"
+    >
+      @for (level of difficultyOptions; track $index) {
+        <option [value]="level">{{ level }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="question-sections">
+    <div class="question-section">
+      @for (question of visibleQuestions; track $index) {
+        <div class="question-cards">
+          <div class="question-card" routerLink="/question/{{ question.questionId }}">
+            <h3>{{ question.question }}</h3>
+            <div class="question-details">
+              <span class="level">Level: {{ question.level }}</span>
+              <!-- <span class="type">Type: {{ question.type }}</span> -->
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <button class="add-question-button" routerLink="/questions/add" aria-label="Add Question">
+    <i class="bi bi-plus-lg"></i>
+  </button>
+</div>

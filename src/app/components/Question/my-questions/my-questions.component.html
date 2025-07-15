@@ -1,0 +1,69 @@
+<app-header></app-header>
+<div class="my-questions-container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <h1>My Questions</h1>
+    <button class="add-question-button" routerLink="/questions/add">
+      <i class="bi bi-plus-lg"></i>
+      Add New Question
+    </button>
+  </div>
+
+  <!-- Filters Section -->
+  <div class="filters-section">
+    <div class="filter-options">
+      <div class="filter-group">
+        <label for="type">Type:</label>
+        <select id="type" [(ngModel)]="selectedType" (change)="filterQuestions()">
+          <option value="All">All Types</option>
+          @for (type of typeOptions; track $index) {
+            <option [value]="type">{{ type }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="difficulty">Difficulty:</label>
+        <select id="difficulty" [(ngModel)]="selectedDifficulty" (change)="filterQuestions()">
+          @for (level of difficultyOptions; track $index) {
+            <option [value]="level">{{ level }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Questions Grid -->
+  <div class="questions-grid">
+    @if (filteredQuestions.length > 0) {
+      @for (question of filteredQuestions; track $index) {
+        <div class="question-card" [routerLink]="['/question/', question.questionId]">
+          <div class="question-type">{{ question.type }}</div>
+          <h3 class="question-title">{{ question.question }}</h3>
+          <div class="question-meta">
+            <span class="level">
+              <i class="bi bi-bar-chart"></i>
+              {{ question.level }}
+            </span>
+            <span class="skill">
+              <i class="bi bi-lightning"></i>
+              {{ question.skill }}
+            </span>
+          </div>
+          <div class="card-actions">
+            <button class="delete-btn" (click)="deleteQuestion(question.questionId); $event.stopPropagation()">
+              <i class="bi bi-trash"></i>
+              Delete
+            </button>
+          </div>
+        </div>
+      }
+    } @else {
+      <div class="no-questions">
+        <i class="bi bi-journal-x"></i>
+        <p>No questions found. Start by adding a new question!</p>
+        <button class="primary-btn" routerLink="/questions/add">Add Question</button>
+      </div>
+    }
+  </div>
+</div>
