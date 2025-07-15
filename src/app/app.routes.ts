@@ -127,4 +127,53 @@ export const routes: Routes = [
         (nf) => nf.NotFoundComponent
       ),
   },
+  {
+    path: 'interviews',
+    loadComponent: () =>
+      import('./components/Interview/interviewform/interviewform.component').then(
+        (int) => int.InterviewformComponent
+      ),
+  },
+  {
+    path: 'interviews/Mock-Interview',
+    loadComponent: () =>
+      import('./components/Interview/mock/mockint/mockint.component').then(
+        (mock) => mock.MockInterviewComponent
+      ),
+  },
+  {
+    path: 'interviews/Mock-Interview/:id',
+    loadComponent: () =>
+      import('./components/Interview/mock/mock-interview-page/mock-interview-page.component').then(
+        (mock) => mock.MockInterviewPageComponent
+      ),
+  },
+  {
+    path: 'interviews/Coding-Interview',
+    loadComponent: () =>
+      import('./components/Interview/code/codeint/codeint.component').then(
+        (code) => code.CodeintComponent
+      ),
+  },
+  {
+    path: 'interviews/Coding-Interview/:id',
+    loadComponent: () =>
+      import('./components/Interview/code/code-interview-page/code-interview-page.component').then(
+        (code) => code.CodeInterviewPageComponent
+      ),
+  },
+  {
+    path: 'feedback/:id',
+    loadComponent: () =>
+      import('./components/Interview/feedback/feedback.component').then(
+        (fb) => fb.FeedbackComponent
+      ),
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./components/common/not-found/not-found.component').then(
+        (nf) => nf.NotFoundComponent
+      ),
+  },
 ];

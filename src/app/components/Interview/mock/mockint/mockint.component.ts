@@ -25,7 +25,7 @@ export class MockInterviewComponent {
     experience: new FormControl('', [Validators.required]),
     level: new FormControl('', [Validators.required]),
   });
-
+  
   userSkills: string[] = [];
 
   constructor(

@@ -45,7 +45,6 @@ export interface apiResponse {
   msg: string;
   data?: object | null;
 }
-
 export interface userProfileResponse extends apiResponse {
   data: {
     user: userObject;
@@ -82,7 +81,6 @@ export interface resumeData {
   experience: number;
   Timestamp: Date;
 }
-
 export interface mockInterviewObj {
   mockInterviewId: string;
   interviewType: string;
@@ -143,7 +141,6 @@ export interface feedbackAPIResponse {
   message: string;
   data: feedbackObj;
 }
-
 export interface resumeUploadResponse extends apiResponse {
   data: {
     cloudURL: string;

@@ -1,12 +1,3 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class LoaderService {
-
-//   constructor() { }
-// }
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
