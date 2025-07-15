@@ -1,12 +1,3 @@
-// import { Injectable } from '@angular/core';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class LoaderService {
-
-//   constructor() { }
-// }
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -20,13 +11,11 @@ export class LoaderService {
 
   show() {
     this.requestCount++;
-    console.log('Show loader, count:', this.requestCount);
     this.loadingSubject.next(true);
   }
 
   hide() {
     this.requestCount--;
-    console.log('Hide loader, count:', this.requestCount);
     if (this.requestCount <= 0) {
       this.loadingSubject.next(false);
       this.requestCount = 0;

@@ -15,4 +15,19 @@ export class FetchQuestionService {
       withCredentials: true,
     });
   }
+
+  searchQuestions(term: string): Observable<QuestionResponse> {
+    return this._http.get<QuestionResponse>(
+      `${environment.apiURLQues}searchquestion?term=${term}`,
+      {
+        withCredentials: true,
+      }
+    );
+  }
+
+  getUsersQuestions(): Observable<QuestionResponse>{
+    return this._http.get<QuestionResponse>(`${environment.apiURLQues}myquestions/`, {
+      withCredentials: true
+    })
+  }
 }

@@ -1,0 +1,94 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { HeaderComponent } from '../../common/header/header.component';
+import { Question } from '../../../constants/types';
+import { FetchQuestionService } from '../../../services/Question/fetch-question.service';
+
+@Component({
+  selector: 'app-my-questions',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterLink,
+    HeaderComponent
+  ],
+  templateUrl: './my-questions.component.html',
+  styleUrl: './my-questions.component.css'
+})
+export class MyQuestionsComponent implements OnInit {
+  questions: Question[] = [];
+  filteredQuestions: Question[] = [];
+
+  // Search and filter controls
+  searchTerm = new FormControl('');
+  selectedType: string = 'All';
+  selectedDifficulty: string = 'All';
+
+  // Filter options
+  typeOptions = ['Technical', 'HR', 'Coding'];
+  difficultyOptions = ['All', 'Beginner', 'Intermediate', 'Advanced'];
+
+  constructor(private questionService: FetchQuestionService) {}
+
+  ngOnInit() {
+    // Load questions
+    this.loadQuestions();
+  }
+
+  loadQuestions() {
+    this.questionService.getUsersQuestions().subscribe({
+      next: (res) => {
+        if (res.success) {
+          this.questions = res.data;
+          this.filterQuestions();
+        }
+      },
+      error: (error) => {
+        console.error('Error loading questions:', error);
+      }
+    });
+  }
+
+  searchQuestions(term: string) {
+    this.questionService.searchQuestions(term).subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.filteredQuestions = response.data;
+        }
+      },
+      error: (error) => {
+        console.error('Error searching questions:', error);
+      }
+    });
+  }
+
+  filterQuestions() {
+    let filtered = [...this.questions];
+
+    // Apply type filter
+    if (this.selectedType !== 'All') {
+      filtered = filtered.filter(q => q.type === this.selectedType);
+    }
+
+    // Apply difficulty filter
+    if (this.selectedDifficulty !== 'All') {
+      filtered = filtered.filter(q => q.level.includes(this.selectedDifficulty));
+    }
+
+    this.filteredQuestions = filtered;
+  }
+
+  editQuestion(id: string) {
+    // TODO: Implement edit functionality
+    console.log('Edit question:', id);
+  }
+
+  deleteQuestion(id: string) {
+    // TODO: Implement delete functionality
+    console.log('Delete question:', id);
+  }
+}

@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Signal, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/common/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { LogoutService } from '../../../services/auth/logout.service';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +18,10 @@ export class HeaderComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private authCheck: AuthService
+    private _router: Router,
+    private _authCheck: AuthService,
+    private _toast: ToastrService,
+    private _logout: LogoutService
   ) {}
 
   toggleMenu() {
@@ -30,19 +35,29 @@ export class HeaderComponent {
       }
     });
 
-    this.authCheck.isLoginCheck().subscribe({
-      next: (res: any) => {
-        this.isLogin.set(res.status === 200);
-        if (typeof window != 'undefined') {
-          localStorage.setItem('isLogin', 'true');
+    if (typeof window !== 'undefined') {
+      this.isLogin.set(localStorage.getItem('isLogin') === 'true');
+    }
+  }
+
+  logout() {
+    this._logout.logout().subscribe({
+      next: () => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('isLogin', 'false');
         }
+        this._toast.clear();
+        this._toast.success('Logout Success');
+        setTimeout(() => {
+          this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this._router.navigate(['/login']);
+          });
+        }, 0);
       },
-      error: (err) => {
-        this.isLogin.set(false);
-        if (typeof window != 'undefined') {
-          localStorage.removeItem('isLogin');
-        }
+      error: () => {
+        this._toast.error('Error Logging Out');
       },
     });
   }
 }
+

@@ -1,0 +1,68 @@
+<app-header></app-header>
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-info">
+      <div class="avatar">
+        <span>{{ user.userFullName ? user.userFullName[0].toUpperCase() : 'U' }}</span>
+      </div>
+      <div class="info">
+        <h2>{{ user.userFullName }}</h2>
+        <p>{{ user.userEmail }}</p>
+      </div>
+    </div>
+    <button class="edit-btn" routerLink="/form">
+      <i class="bi bi-pencil-square"></i>
+      Edit Profile
+    </button>
+    <a class="edit-btn" href="{{ resumeUrl }}" target="_blank">Resume</a>
+    <button class="edit-btn" routerLink="/myquestions">My Questions</button>
+  </div>
+  <div class="skills-container">
+    @if (skills.length != 0) {
+      @for (skill of skills; track $index) {
+        <div class="skill">{{ skill }}</div>
+      }
+    } @else {
+      <div class="no-skill">---- No Skills Found ----</div>
+    }
+  </div>
+  <div class="history-container">
+    <h3>Interview History</h3>
+    <div class="tabs">
+      <button (click)="activeTab = 'mock'" [class.active]="activeTab === 'mock'">
+        Mock Interviews
+      </button>
+      <button (click)="activeTab = 'code'" [class.active]="activeTab === 'code'">
+        Code Interviews
+      </button>
+    </div>
+
+    @if (activeTab === 'mock') {
+      @if (mockInterviews.length > 0) {
+        <div class="interview-list">
+          @for (interview of mockInterviews; track $index) {
+            <div class="interview-card" routerLink="/feedback/{{ interview.mockIntId }}">
+              <h4>{{ interview.Timestamp | date: 'mediumDate' }}</h4>
+              <p>{{ interview.interviewType }}</p>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="no-interviews">No interviews found.</p>
+      }
+    } @else if (activeTab === 'code') {
+      @if (codeInterviews.length > 0) {
+        <div class="interview-list">
+          @for (interview of codeInterviews; track $index) {
+            <div class="interview-card" routerLink="/feedback/{{ interview.codeIntId }}">
+              <h4>{{ interview.Timestamp | date: 'mediumDate' }}</h4>
+              <p>{{ interview.language }} && {{ interview.level }} year of experience</p>
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="no-interviews">No interviews found.</p>
+      }
+    }
+  </div>
+</div>

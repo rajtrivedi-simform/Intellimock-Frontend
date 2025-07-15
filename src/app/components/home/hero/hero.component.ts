@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './hero.component.css',
 })
 export class HeroComponent {
-  isLogin = signal(localStorage.getItem('isLogin') === 'true');
+  isLogin = signal(false);
 
   constructor() {
     if (typeof window != 'undefined') {

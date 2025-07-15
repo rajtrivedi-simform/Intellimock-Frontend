@@ -29,6 +29,7 @@ export interface Question {
   type: string;
   skill: string;
   level: string;
+  userId: string;
 }
 
 export interface questionAPIResponse {
@@ -44,7 +45,42 @@ export interface apiResponse {
   msg: string;
   data?: object | null;
 }
+export interface userProfileResponse extends apiResponse {
+  data: {
+    user: userObject;
+    mockInterviewData: Array<mockInterviewData>;
+    codeInterviewData: Array<codeInterviewData>;
+    resume: resumeData;
+  };
+}
 
+export interface userObject {
+  userId: string;
+  userFullName: string;
+  userEmail: string;
+  resumeData: string[];
+}
+export interface mockInterviewData {
+  Timestamp: string;
+  interviewType: string;
+  level: string;
+  mockIntId: string;
+}
+
+export interface codeInterviewData {
+  codeIntId: string;
+  level: string;
+  language: string;
+  Timestamp: string;
+}
+export interface resumeData {
+  resumeId: string;
+  userId: string;
+  resumeCloudUrl: string;
+  skills: Array<string>;
+  experience: number;
+  Timestamp: Date;
+}
 export interface mockInterviewObj {
   mockInterviewId: string;
   interviewType: string;
@@ -104,4 +140,44 @@ export interface feedbackAPIResponse {
   status: number;
   message: string;
   data: feedbackObj;
+}
+export interface resumeUploadResponse extends apiResponse {
+  data: {
+    cloudURL: string;
+    tokens: string[] | string;
+  };
+}
+
+export interface userProfilePayload {
+  cloudURL: string;
+  experience: number;
+  skills: string[];
+}
+
+export interface resumeAPIResponse extends apiResponse {
+  data: {
+    tokens: string[];
+    cloudURL: string;
+  };
+}
+
+export interface skillsAPIResponse extends apiResponse {
+  data: {
+    skills: string[];
+  };
+}
+
+export interface questionPayload {
+  question: string;
+  type: 'Technical' | 'HR' | 'Coding';
+  skill: string;
+  level: 'Beginner (0-2 years)' | 'Intermediate (2-5 years)' | 'Advanced (5+ years)';
+}
+
+export interface profileResponse extends apiResponse {
+  data: {
+    resumeCloudUrl: string,
+    skills: string[],
+    experience: number,
+  }
 }
